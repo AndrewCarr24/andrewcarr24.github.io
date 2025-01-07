@@ -3,31 +3,21 @@ title: Are We in Kansas Anymore?
 author: Andrew Carr
 date: 2019-11-01
 categories: [code, analysis]
-image: "pic3.png"
+image: "pic4.png"
 ---
 
 
-I've been watching a lot of movies lately.  Last month, I was on a Grisham adaptation kick.  For younger readers who may be unfamiliar with John Grisham, the author wrote several bestselling courtroom dramas in the 90s.  Many of his books are set in the Deep South, and they often involve a young idealistic lawyer who bravely confronts the corrupt white male-dominated institutions of a southern city (usually Memphis).  Before my run of Grisham adapations, I was watching a lot of John Hughes movies, many of which are set in the Midwest.  Planes, Trains, and Automobiles, directed by Hughes, takes the audience through rural Kansas and Missouri before concluding in the suburbs of Chicago, where many Hughes movies end.   Anyway, my forays into Grisham adaptations and Hughes films led me to wonder - are fewer movies set in rural and smalltown America today than in the 80s and 90s?  In other words, are we in Kansas anymore?      
+I've been watching a lot of movies lately.  Last month, I was on watching a lot of John Grisham adaptations. Many of Grisham's books are set in the Deep South. Before that, I was watching a lot of John Hughes movies, many of which are set in the Midwest. My forays into Grisham adaptations and Hughes films led me to wonder - are fewer movies set in rural and smalltown America today than in the 80s and 90s? In other words, are we in Kansas anymore?      
 
-This question led me to examine the broader question of how Hollywood film has changed over the past few decades.  In this post, I look at several important trends related to this subject, including the changing relationship between genre and movie box office returns, shifts in the representation of men and women among movies' top-billed actors, and a whole lot more.  I conduct these analyses using data I collected through Wikipedia's APIs.  The data consists of 9712 movies released in the United States between 1980 and 2019. You can download it in its entirety on my Github page [github.com/datadiarist/large_files/blob/master/movie_metadata_tbl.rds](https://github.com/datadiarist/large_files/blob/master/movie_metadata_tbl.rds).
+This question led me to examine the broader question of how Hollywood film has changed over the past few decades. In this post, I look at the changing relationship between genre and movie box office returns, shifts in the representation of men and women among movies' top-billed actors, and a whole lot more. I conduct these analyses using data I collected through Wikipedia's APIs. The data consists of 9712 movies. The population frame is all movies with Wikipedia entries released in the United States between 1980 and 2019. You can download the data in its entirety here [github.com/andrewcarr24/large_files/blob/master/movie_metadata_tbl.rds](https://github.com/datadiarist/large_files/blob/master/movie_metadata_tbl.rds).
 
 # Data 
 
-One challenge with collecting movie data from the internet is the two largest sources of online movie data, Rotten Tomatoes and the Internet Movie Database, do not allow web scraping and have limited APIs.  Wikipedia, on the other hand, has a comprehensive set of APIs that allows users to collect pretty much anything from the site, even content from previous versions of Wikipedia pages.  The catch is that Wikipedia is a database that relies on user-generated content.  One consequence of this is that the data is fairly unstandardized.  For instance, movie pages provide box office information in many different formats - $100 million, 100,000,000, 100 million dollars, and so forth.  I won't go into the gory details of pulling and preprocessing this data here.  It's a lot of sprawling conditional statements and regular expression syntax.  I may devote a post to the process of dealing with the many edge cases one encounters when working with Wikipedia data sometime in the future.  
+Wikipedia has a comprehensive set of APIs that allows users to collect almost anything from the site, even content from previous versions of Wikipedia pages. My sample of movies come from a group of pages that all have the headline "List of American films of [a year]". Each of these pages has tables with movie titles and links to their pages. By drawing from these, I collected a list of names and links for 9712 movies.  I then pulled information from the infobox of each movie page. Here's what the infobox looks like for Next, a timeless cinematic masterpiece starring Nicolas Cage as a small-time magician who can see exactly two minutes into the future.
 
-My sample of movies come from a group of pages that all have the headline "List of American films of [a year]".  Each of these pages has tables with movie titles and links to their pages.  By drawing from these, I collected a list of names and links for 9712 movies.  Next, I pulled information from the infobox of each movie page.  This appears in the upper-right corner of the page.  Here's what the infobox looks like for Next, a timeless cinematic masterpiece starring Nicolas Cage as a small-time magician who can see the future, but only two minutes into the future (exactly two minutes).    
+![](pic1.png){fig-align="center" width="25%"}
 
-![](pic1.png)
-
-For each movie, I collected the release date, box office, budget, runtime, directors, and top-billed actors from the infobox.  I also gathered links to the pages of top-billed actors in each movie.  Each actor page has categories, which provide information that can be used to infer actor gender and race/ethnicity.  For example, take a look at the categories associated on Tory Kittles' (Next co-star) page. 
-
-![](pic2.png)
-
-This tells us that Tory Kittles is a black male born in 1975.  
-
-Finally, I collected additional information on movies by examining main body of movie pages.  Most movie pages have a "Critical Reception" section that has a movie's Rotten Tomotoes score and the number of reviews on which this score is based.  I also  extracted movie genre from the introduction of each movie page.  This bit of information almost always comes in the first sentence of the article, right before the first instance of the word "film" or "movie".  Finally, I used a set of rules for extracting where the film was set from the film synopsis.  
-
-Let's have a look at the column names of the movie data.
+For each movie, I collected the release date, box office, budget, runtime, directors, and top-billed actors from the infobox. I also gathered links to the pages of top-billed actors in each movie. Finally, I collected additional information by examining main body of movie pages. Most movie pages have a "Critical Reception" section that has a movie's Rotten Tomotoes score and the number of reviews on which this score is based. I also extracted movie genre from the introduction of each movie page. Finally, I used a set of rules for extracting where the film was set from the film synopsis. Let's have a look at the columns of the data.
 
 ```{r, warning = FALSE, include = FALSE}
 library(readr)
@@ -63,25 +53,25 @@ movie_metadata_tbl$review[movie_metadata_tbl$name_lab == "Norm of the North"] <-
 colnames(movie_metadata_tbl)
 ```
 
-This dataset has movie name, director and director link, genre, runtime, budget and box office information, Rotten Tomatoes review information, and release date information.  After that, there is a set of columns that are nested lists containing data on top-billed actors in each movie.  These nested lists contain actors' names, links to their Wikipedia pages, race, gender, age, birthday, and more.  Finally, there are several columns of movie-level actor data, including the proportion black of top-billed actors who are black and the total number of women among top-billed actors.  
-
-Let's start with some exploratory data analysis.  By sorting the data by the box office variable and taking the top ten entries, we can see the top ten highest-grossing Hollywood movies according to the data. 
+This dataset has movie name, director and director link, genre, runtime, budget and box office information, Rotten Tomatoes review information, and release date information.  After that, there is a set of columns that are nested lists containing data on top-billed actors in each movie. These lists contain actors' names, links to their Wikipedia pages, race, gender, age, birthday, and more. Finally, there are several columns of movie-level actor data, including the proportion Black of top-billed actors who are Black and the total number of women among top-billed actors. Let's start with some exploratory data analysis. Here are the top ten highest-grossing Hollywood movies according to the data. 
 
 ```{r}
-movie_metadata_tbl %>% arrange(desc(box_office)) %>% 
-  slice(1:10) %>% pull(name_lab)
+movie_metadata_tbl %>%
+  arrange(desc(box_office)) %>% 
+  slice(1:10) %>% 
+  pull(name_lab)
 ```
 
-Sure enough, these are the highest grossing movies of all time before adjusting for inflation. Let's see how this list compares to an inflation-adjusted list of highest grossing films.   
+Let's see how this list compares to an inflation-adjusted list of highest grossing films.   
 
 ```{r}
-movie_metadata_tbl %>% arrange(desc(box_office_adj)) %>% 
-  slice(1:10) %>% pull(name_lab)
+movie_metadata_tbl %>%
+  arrange(desc(box_office_adj)) %>% 
+  slice(1:10) %>%
+  pull(name_lab)
 ```
 
-Adjusting for inflation vaults James Cameron to the top of the list with Titanic and Avatar.  We also see more of the old guard of blockbuster directors, such as Spielberg and Lucas, in this inflation-adjusted list.  
-
-Let's try to find some weirder kinds of outliers in this data.  Turning to runtime, I pull the longest and shortest movies from the data.
+Adjusting for inflation vaults James Cameron to the top of the list with Titanic and Avatar. Next, I pull the longest and shortest movies from the data.
 
 ```{r}
 paste("Longest: ", movie_metadata_tbl %>% 
@@ -90,27 +80,29 @@ paste("Shortest: ", movie_metadata_tbl %>%
         arrange(runtime) %>% pull(name_lab) %>% .[1])
 ```
 
-The Cure for Insomnia is an 87-hour long experimental film that consists of an artist reading a 4,080-page poem.  It held the Guiness record for longest film before being supplanted by a non-American movie.  Luxo Jr. is a 2-minute long animated film released by Pixar in 1986.  It used computer-based technology that was groundbreaking at the time and was the first CGI movie to be nominated for an Oscar (it was nominated for Best Animated Short).
-
-We can also look at which actors appear most in the data.  
+The Cure for Insomnia is an 87-hour long experimental film that consists of an artist reading a 4,080-page poem.  It held the Guiness record for longest film before being supplanted by a non-American movie.  Luxo Jr. is a two minute long animated film released by Pixar in 1986 that was the first CGI movie to be nominated for an Oscar. We can also look at which actors appear most in the data.  
 
 ```{r}
-movie_metadata_tbl$cast_link %>% unlist %>% table %>%
-  sort %>% .[(length(.) - 4):length(.)]
+movie_metadata_tbl$cast_link %>% 
+  unlist %>% 
+  table %>%
+  sort(decreasing = TRUE) %>% 
+  head(5)
 ```
 
-It turns out that Samuel L. Jackson is the hardest working actor in show business, with 76 top billings since 1980.  Jackson has this distinction on lock, holding a nine-film lead on Unbreakable co-star Bruce Willis.     
+It turns out that Samuel L. Jackson is the hardest working actor in show business, with 76 top billings since 1980. Jackson has this distinction on lock, holding a nine-film lead on Unbreakable co-star Bruce Willis.
 
 What other amusing outliers can we find in the data?  How about worst movie of all time?  I get this by filtering the data to movies that have received at least 40 Rotten Tomatoes reviews and sorting by average Rotten Tomatoes score.
 
 ```{r}
-movie_metadata_tbl %>% filter(num_review > 40) %>% 
-  arrange(review) %>% pull(name) %>% .[1:10]
+movie_metadata_tbl %>% 
+  filter(num_review > 40) %>% 
+  arrange(review) %>%
+  pull(name) %>% 
+  head(10)
 ```
 
-These movies all received either a 0% or 1% on Rotten Tomatoes (again, based on 40+ reviews).  There are some derivative horror movies (One Missed Call, Alone in the Dark) and tasteless comedies (Disaster Movie, National Lampoon's Gold Diggers) here.  We also see movies that have ended careers (Roberto Benini as Pinocchio in Pinocchio, Cubo Gooding Jr. in Daddy Day Camp).  My favorite on this list is Dana Carvey's incredibly misguided attempt to capitalize on the success of Michael Myer's Austin Powers with The Master of Disguise.  
-
-There are many other interesting bits of information one can find in this data, and I encourage you the download the data yourself to answer some of your own questions.  In the next section, I examine some broader patterns in the data.
+These movies all received either a 0% or 1% on Rotten Tomatoes based on 40 or more reviews. There are some derivative horror movies (One Missed Call, Alone in the Dark) and tasteless comedies (Disaster Movie, National Lampoon's Gold Diggers) here. We see movies that have ended careers (Roberto Benini as Pinocchio in Pinocchio, Cubo Gooding Jr. in Daddy Day Camp). My favorite on this list is Dana Carvey's incredibly misguided attempt to capitalize on the success of Michael Myer's Austin Powers with The Master of Disguise.  
 
 # Visualizing Trends in Hollywood Film
 
@@ -189,7 +181,7 @@ thm2 <- hc_theme_merge(
   ))
 ```
 
-First, I look at how actors compare in terms of the profitability and critical success of their films.  The figure below shows actors that have starred in more than 20 movies since 1980.  The x-axis is the average Rotten Tomatoes score of an actor's movies, and the y-axis is average profitability, measured as net box office returns adjusted for inflation.  I've placed the actors in three groups.  Red dots represent actors that have never been nominated for an Oscar, silver dots indicate actors that have been nominated but have never won an oscar, and gold dots represent actors that have won an oscar.  The way to interpret this graph is that being farther from the axes, in the upper right part of the figure, is good, while being close to the axes, in the lower left part of the figure, is bad.  You can hover your mouse over each dot to view the stats on that actor.
+Next, I look at how actors compare in terms of the profitability and critical success of their films. The figure below was created using the Highcharts Javascript library. It shows actors who have starred in more than 20 movies since 1980. The x-axis is the average Rotten Tomatoes score of an actor's movies, and the y-axis is average profitability, measured as net box office returns adjusted for inflation. The actors are in three groups. Red dots represent actors that have never been nominated for an Oscar, silver dots are actors that have been nominated but have never won an oscar, and gold dots are actors that have won an oscar. Being in the upper right part of the figure is good, while being in the lower left part of the figure, is bad. You can hover your mouse over each dot to view the stats on that actor.
 
 ```{r, echo = FALSE, warning = FALSE}
 # temp_hchart <- hchart(actor_stats_tbl, "scatter", 
@@ -213,13 +205,13 @@ htmltools::tags$iframe(
 )
 ```
 
-The figure shows a clear positive correlation between critical acclaim and box office returns.  Also, the data is heteroskedastic - the spread in box office returns appears to increase as the mean Rotten Tomatoes score goes up.  There's evidence of a positive relationship between winning an Academy Award and being in positively reviewed and profitable movies.  To see this clearly, click the "Nominee" label at the bottom of the figure to hide nominated actors and display only actors that have won an oscars and actors who have not been nominated.  This shows pretty clearly that winning an oscar is correlated with both the critical reception and the profitability of an actor's films. 
+The figure shows a positive correlation between critical acclaim and box office returns. The data is heteroskedastic: the spread in box office returns increases as the mean Rotten Tomatoes score goes up. There's a positive relationship between winning an Academy Award and being in positively reviewed and profitable movies. To see this clearly, click the "Nominee" label at the bottom of the figure to hide nominated actors and display only actors that have won an oscars and actors who have not been nominated.
 
-The figure above also shows that a handful of actors have carved out a niche as "prestige" actors - while their movies may not make a lot of money, they are able to continue to get work on the critical acclaim that their movies receive.  These actors can be found in the lower right-hand corner of the figure.  They include Phillip Seymour Hoffman (the most critically-acclaimed actor in the sample), Frances McDormand, Edward Nortan, Denzel Washington, Jack Nicolson, Angelica Houston, and many others.  These actors generally do not appear in blockbusters.  The lower-left quadrant of the figure, on the other hand, has actors whose movies do not garner praise from critics or make a lot of money.  Unsurprisingly, most of these actors are no longer in large-budget Hollywood films.  They include Brendan Fraser, Sharon Stone, Kevin Pollack, Cuba Gooding Jr., and John Travolta.  
+Some actors have carved out a niche as "prestige" actors - while their movies may not make a lot of money, they are able to continue to get work on the critical acclaim that their movies receive. These actors can be found in the lower right-hand corner of the figure. They include Phillip Seymour Hoffman (the most critically-acclaimed actor in the sample), Frances McDormand, Edward Nortan, Denzel Washington, Jack Nicolson, and Angelica Houston. The lower-left quadrant of the figure, on the other hand, has actors whose movies do not garner praise from critics or make a lot of money.  Unsurprisingly, most of these actors are no longer in large-budget Hollywood films.  They include Brendan Fraser, Sharon Stone, Kevin Pollack, Cuba Gooding Jr., and John Travolta.  
 
-One could infer from this figure that Alan Rickman is the greatest actor of all time.  He appears at the top right of the plot.  His combined Rotten Tomatoes score and mean box office returns is significantly higher than any other actor's.  His roles in Die Hard, Galaxy Quest, and  the Harry Potter movies explain why he has the highest mean box office of any actor here.  Shockingly, Rickman was never nominated for an Academy Award.  Ironically, the Guardian gave Rickman an "honorable mention" on their list of greatest actors to never have been nominated for an oscar.
+One could conclude from this figure that Alan Rickman is the greatest actor of all time.  He appears at the top right of the plot. His combined Rotten Tomatoes score and mean box office returns are significantly higher than any other actor's. Shockingly, Rickman was never nominated for an Academy Award. Fittingly, the Guardian gave Rickman an "honorable mention" on their list of greatest actors to never have been nominated for an oscar.
 
-Having compared actors by critical acclaim and profitability, I now turn to the movies.  The next figure shows trends in the kinds of movies that do well at the box office.  Each point represents a movie, the x-axis gives the date of a movie's release, and the y-axis indicates gross box office returns.  Movies are grouped into six genres - Action, Adventure/Fantasy, Drama, Comedy, Animated, and Horror.  I created these groupings using a set of rules for classifying genres.  Movies with hybrid genres were categorized according to the genre that I believe should take precedence.  For instance, animated comedies were placed in the Animated category.  Movies that elude categorization (e.g. Titanic, which is described as an "epic romance and disaster film") were filtered from the data in this figure.  You can hover over a point to view the details for a specific movie.  To filter by genre, click the genre label at the bottom of the figure.
+The next figure shows trends in the kinds of movies that do well at the box office.  Each point represents a movie, the x-axis gives the date of a movie's release, and the y-axis indicates gross box office returns. Movies are grouped into six genres - Action, Adventure/Fantasy, Drama, Comedy, Animated, and Horror. You can hover over a point to view the details for a specific movie. To filter by genre, click the genre label at the bottom of the figure.
 
 ```{r, echo = FALSE}
 # temp_hchart <- hchart(movie_metadata_tbl %>% filter(!is.na(genre_cat)), "scatter", 
@@ -242,13 +234,13 @@ htmltools::tags$iframe(
 )
 ```
 
-The first thing to notice about this figure is that movie box office returns vary substantially by genre.  The movies that make the most money by far are Fantasy/Adventure movies.  These include the Stars Wars and Indiana Jones franchises, the Harry Potter and Lord of the Rings franchises, and, most recently, superhero franchises.  The number of highly profitable Fantasy/Adventure films has also increased in the past fifteen years or so.  This can be seen clearly by removing the other genres from the plot.  Since the releases of the first installments of Harry Potter and the Lord of the Rings, Hollywood has been making a lot more Fantasy movies and these movies have been making a lot of money.  Animated movies have had a similar uptick in profitability.  This started with the release of Toy Story in late 1995.  Since then, virtually all of the most profitable animated films have been CGI films.  
+Movie box office returns vary substantially by genre. The movies that make the most money are Fantasy/Adventure movies such as superhero franchises. The number of highly profitable Fantasy/Adventure films has increased in the past fifteen years or so. This can be seen clearly by removing the other genres from the plot. Animated movies have also had an uptick in profitability. This started with the release of Toy Story in late 1995. 
 
-At the other end of the profitability spectrum are horror films.  Represented by red dots, these movies sit along the bottom of the figure like a pool of blood.  These are low-risk, low-reward affairs.  Horror movies are often made on very small budgets, and rarely make a lot of money.  The most profitable horror movie in this figure is The Sixth Sense, with an adjusted net box office of almost $1 billion.  
+At the other end of the profitability spectrum are horror films. Represented by red dots, these movies sit along the bottom of the figure. Horror movies are often made on very small budgets, and rarely make a lot of money. The most profitable horror movie in this figure is The Sixth Sense, with an adjusted net box office of almost $1 billion.  
 
-Finally, we can look at the bottom of the figure to see the biggest box office bombs in since 1980.  There are many - Gigli, Adventures of Pluto Nash, Inchon, Mars Needs Moms - but the standout among them is Cutthroat Island, a 1995 comedy with an adjusted net box office of negative $143 million.  Sure enough, this movie holds the Guiness record for largest box office loss of all time.  The movie bankrupted its production company, Carolco Pictures, which went under the same year the movie was released.
+We can look at the bottom of the figure to see the biggest box office bombs in since 1980. There are many - Gigli, Adventures of Pluto Nash, Inchon, Mars Needs Moms - but the standout among them is Cutthroat Island, a 1995 comedy with an adjusted net box office of negative $143 million. Sure enough, this movie holds the Guiness record for largest box office loss of all time. The movie bankrupted its production company, Carolco Pictures, which went under the same year the movie was released.
 
-Next, I turn to demographic trends, beginning with shifts in the racial and ethnic composition of Hollywood movies.  The figure below visualizes changes in the average proportions of white, black, Hispanic, and Asian top-billed actors in all Hollywood movies since 1980.  Unlike the previous figures, this one allows you to "drill down" to additional figures by clicking the lines of the main plot.  The drill down plots were written in Javascript and are incorporated into the code for the main plot using the JS function from the htmlwidgets package.  You can find the code for creating this plot on my [Github](https://github.com/datadiarist/Misc-Files/blob/master/movie_race_data.R)
+Turning to demographic trends, the figure below visualizes changes in the average proportions of white, Black, Hispanic, and Asian top-billed actors in all Hollywood movies since 1980. Unlike the previous figures, this one allows you to "drill down" to additional figures by clicking the lines of the main plot. The drill down plots were written in Javascript and are incorporated into the code for the main plot using the JS function from the htmlwidgets package.
 
 ```{r, echo = FALSE, include = FALSE, warning = FALSE}
 ## Tbl for race visualization (HC 3 in viz script) ## 
@@ -598,11 +590,11 @@ htmltools::tags$iframe(
 )
 ```
 
-The most striking thing about this graph is how little the racial makeup of actors in top-billed Hollywood roles has changed since 1980.  Still, we do see a meaningful increase in the representation of black actors.  The proportion of black actors has increased from .033 in 1980 to .146 today.  Conversely, white actors went from filling about 95% of the top movie roles in 1980 to filling 79% of these roles in 2019.  We see small changes in the percentages of top-billed Asian and Hispanic actors, both of which went from under 1% in 1980 to 3-3.5% today.  Still, this 3% representation belies the much higher proportions of people in the U.S. who identified as either Asian or non-white Hispanic in the most recent Census.  Combined, Asians and non-white Hispanics make up about 24% of the U.S. population, much higher than the 6.5% of movie roles people in these groups occupy.
+The racial makeup of actors in top-billed Hollywood roles has not changed much since 1980. Still, we do see a meaningful increase in the representation of Black actors. The proportion of black actors has increased from .033 in 1980 to .146 today.  Conversely, white actors went from filling about 95% of the top movie roles in 1980 to filling 79% of these roles in 2019. We see small changes in the percentages of top-billed Asian and Hispanic actors, both of which went from under 1% in 1980 to 3-3.5% today.
 
-Click on the line representing black actors to see the breakdown of top-billed black actors by genre.  This area chart shows that black actors were cast almost exclusively in comedies and dramas in 1980.  The increase in the overall proportion of black actors among top-billed actors appears to have resulted from greater black representation in the other genres.  In particular, more black actors star in animated movies and in fantasy/adventure movies today.  
+Click on the line representing Black actors to see the breakdown of top-billed Black actors by genre. This area chart shows that top-billed Black actors were cast almost exclusively in comedies and dramas in 1980. The increase in the overall proportion of Black actors among top-billed actors appears to have resulted from greater black representation in the other genres. In particular, more black actors star in animated movies and in fantasy/adventure movies today.  
 
-What about the relative representation of men and women in Hollywood?  Overall proportions of men and women have not changed a whole lot (it's about 60-40).  However, we see some interesting trends when we disaggregate the genders by age group.  The following figure displays changes in proportions of men and women in Hollywood movies by age groups.  Men are in the left plot and women are in the right plot.  Each plot divides men and women into five age groups: under 18, 18-34, 35-49, 50-69, over 70.  You can find the code I used to create this plot [here](https://github.com/datadiarist/Misc-Files/blob/master/movie_gender_data.R).      
+What about the relative representation of men and women in Hollywood? Overall proportions of men and women have not changed a whole lot (it's about 60-40). We see some interesting trends when we disaggregate the genders by age group. The following figure displays changes in proportions of men and women in Hollywood movies by age groups. Men are in the left plot and women are in the right plot. Each plot divides men and women into five age groups: under 18, 18-34, 35-49, 50-69, over 70. 
 
 ```{r, echo = FALSE, warning=FALSE}
 gender_reps_tbl <- movie_metadata_tbl %>% mutate(year = str_sub(date, 1, 4)) %>% 
@@ -670,27 +662,10 @@ scale_x_discrete(limits = c(1980, 1990, 2000, 2010),
   scale_y_continuous(expand = expand_scale(mult = c(0,.1))) 
 ```
 
-These results are pretty staggering.  Look at the age breakdown of women in the left plot.  The red, purple, and yellow layers represent women actors 49 and under.  Even today, these groups make up about 80% of top-billed women actors.  What ever happened to Rene Russo?  She turned 50.  The plot does show a very small trend toward greater overall representation of women (from ~35% to ~40%), and this minor uptick seems to be due to small gains among women actors 50 and older.  Still, older women remain highly underrepresented in Hollywood film.  There's also a large discrepancy in representation between older women and older men, who appear to be about 4 times more prevalent than older women.  This can be seen by comparing the green layers of the two plots.
-
-# Movie Locations 
-
-At the beginning of this post, I promised I would evaluate whether smalltown and rural America are less well represented in Hollywood today than they were in the past.  Well, my analyses did not show a meaningful change in the proportion of movies that are set in rural/smalltown areas.  However, I did find some other interesting patterns.
-
-```{r echo=FALSE}
-htmltools::tags$iframe(
-  srcdoc = paste(readLines("movie_geo.html"), collapse = "\n"),
-  width = "100%",
-  height = "500px",
-  frameborder = "0"
-)
-```
-
-Click on a U.S. region to see the distribution of movies by genre in that region.  These distributions are presented as waffle charts.  Hover over a square to see the name and settings of a particular movie.  Click the button in the top right to return to the map.  This can take a few seconds.  
-
-For most of the regions, comedies and dramas are more numerous than other types of movies.  This may be a function of my genre classification scheme.  However, there are a few differences among regions that are of interest.  For example, New England has a significantly higher proportion of horror movies than other regions of the country.  This is likely due to the fact that Stephen King comes from Maine.  Most of King's books are set in New England, and more of his books have been adapted to film than any other author's.  Having grown up in New England, I can attest to the creepiness of this part of the country.  The South has a disproportionate number of dramas.  Many of these are historic films, courtroom dramas, and adaptations of works of southern Gothic literature.  We see more levity in the Midwest, where comedies are the most popular genre (e.g. Adventures in Babysitting, Home Alone, Ferris Bueller's Day off).  My interpretation of this is that comedies try to make their characters as relatable as possible.  In the 80s and 90s, one way to do this was to set your movie in middle America.  This may no longer be true today, however.
+Look at the age breakdown of women in the left plot. The red, purple, and yellow layers represent women actors 49 and under. Even today, these groups make up about 80% of top-billed women actors. Older women remain highly underrepresented in Hollywood film. There's also a large discrepancy in representation between older women and older men, who appear to be about 4 times more prevalent than older women. This can be seen by comparing the green layers of the two plots.
 
 # Recap
 
-That concludes our journey through forty years of Hollywood film.  I hope you learned a thing or two. Please do not hesitate to contact me if you have any questions about how I created this dataset or the plots.  
+That concludes our journey through forty years of Hollywood film.  I hope you learned a thing or two. Please reach out to me if you have any questions about how I created these plots or the underlying data.  
 
 

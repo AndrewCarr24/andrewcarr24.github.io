@@ -1,19 +1,15 @@
 ---
 title: "About"
-image: profile.jpg
+image: family.jpg
 about:
   template: jolla
-  links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
+  links: 
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/andrew-carr-a2aba232/
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/AndrewCarr24
 ---
 
-About this blog
+Hello and welcome to my blog! I am a data scientist working in the Raleigh-Durham area. I have a PhD in sociology and an MS in statistics from Duke. I maintain this blog to think through and showcase some of the side projects I'm working on. If you have questions or comments about anything here, you can reach me at carr.andrewjohn [at] gmail [dot] com.  
