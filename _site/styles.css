@@ -7,3 +7,6 @@
      max-width: 30%;
  }
  
+ #quarto-document-content {
+    text-align: left;
+}

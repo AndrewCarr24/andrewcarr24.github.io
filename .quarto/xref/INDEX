@@ -16,5 +16,8 @@
   },
   "posts/auto_ml/index.ipynb": {
     "index.html": "fa3c4c39"
+  },
+  "publications.qmd": {
+    "publications.html": "bf3f53c1"
   }
 }

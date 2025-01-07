@@ -2,8 +2,8 @@
 title: Are We in Kansas Anymore?
 author: Andrew Carr
 date: 2019-11-01
-categories: [code, analysis]
-image: "pic4.png"
+categories: [data viz, analysis]
+image: "pic5.png"
 ---
 
 
