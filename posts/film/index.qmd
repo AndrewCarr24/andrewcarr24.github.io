@@ -4,11 +4,12 @@ author: Andrew Carr
 date: 2019-11-01
 categories: [data viz, analysis]
 image: "pic5.png"
+toc: true
 ---
 
 In this post, I examine how Hollywood film has changed over the past few decades. I look at the changing relationship between genre and movie box office returns, shifts in the representation of men and women among top-billed actors, and the relationship between critical and commercial success. I conduct these analyses using data that I collected through Wikipedia's APIs. The data consists of 9712 movies. The population frame is all movies with Wikipedia entries released in the United States between 1980 and 2019. 
 
-# Data 
+## Film Data 
 
 Wikipedia has a set of APIs that allows users to collect almost anything from the site. My data comes from a group of pages that have the headline "List of American films of [a year]". Each of these pages has tables with movie titles and links to their pages. By drawing from these, I collected a list of names and links for 9712 movies and pulled information from the infobox of each movie page. Here's what the infobox looks like for Next, a timeless cinematic masterpiece starring Nicolas Cage as a small-time magician who can see exactly two minutes into the future.
 
@@ -101,7 +102,7 @@ movie_metadata_tbl %>%
 
 These movies all received either a 0% or 1% on Rotten Tomatoes based on 40 or more reviews. There are some derivative horror movies (One Missed Call, Alone in the Dark) and tasteless comedies (Disaster Movie, National Lampoon's Gold Diggers) here. We see movies that have ended careers (Roberto Benini as Pinocchio in Pinocchio, Cubo Gooding Jr. in Daddy Day Camp). My favorite on this list is Dana Carvey's incredibly misguided attempt to capitalize on the success of Michael Myer's Austin Powers with The Master of Disguise.  
 
-# Visualizing Trends in Hollywood Film
+## Actors' Critical and Commercial Success
 
 ```{r, warning = FALSE, include = FALSE}
 
@@ -208,6 +209,8 @@ Some actors have carved out a niche as "prestige" actors - while their movies ma
 
 One could conclude from this figure that Alan Rickman is the greatest actor of all time.  He appears at the top right of the plot. His combined Rotten Tomatoes score and mean box office returns are significantly higher than any other actor's. Shockingly, Rickman was never nominated for an Academy Award. Fittingly, the Guardian gave Rickman an "honorable mention" on their list of greatest actors to never have been nominated for an oscar.
 
+## Box Office Returns by Genre 
+
 The next figure shows trends in the kinds of movies that do well at the box office.  Each point represents a movie, the x-axis gives the date of a movie's release, and the y-axis indicates gross box office returns. Movies are grouped into six genres - Action, Adventure/Fantasy, Drama, Comedy, Animated, and Horror. You can hover over a point to view the details for a specific movie. To filter by genre, click the genre label at the bottom of the figure.
 
 ```{r, echo = FALSE}
@@ -236,6 +239,8 @@ Movie box office returns vary substantially by genre. The movies that make the m
 At the other end of the profitability spectrum are horror films. Represented by red dots, these movies sit along the bottom of the figure. Horror movies are often made on very small budgets, and rarely make a lot of money. The most profitable horror movie in this figure is The Sixth Sense, with an adjusted net box office of almost $1 billion.  
 
 We can look at the bottom of the figure to see the biggest box office bombs in since 1980. There are many - Gigli, Adventures of Pluto Nash, Inchon, Mars Needs Moms - but the standout among them is Cutthroat Island, a 1995 comedy with an adjusted net box office of negative $143 million. Sure enough, this movie holds the Guiness record for largest box office loss of all time. The movie bankrupted its production company, Carolco Pictures, which went under the same year the movie was released.
+
+## Actor Representation by Race/Ethnicity
 
 Turning to demographic trends, the figure below visualizes changes in the average proportions of white, Black, Hispanic, and Asian top-billed actors in all Hollywood movies since 1980. Unlike the previous figures, this one allows you to "drill down" to additional figures by clicking the lines of the main plot. The drill down plots were written in Javascript and are incorporated into the code for the main plot using the JS function from the htmlwidgets package.
 
@@ -591,6 +596,8 @@ The racial makeup of actors in top-billed Hollywood roles has not changed much s
 
 Click on the line representing Black actors to see the breakdown of top-billed Black actors by genre. This area chart shows that top-billed Black actors were cast almost exclusively in comedies and dramas in 1980. The increase in the overall proportion of Black actors among top-billed actors appears to have resulted from greater black representation in the other genres. In particular, more black actors star in animated movies and in fantasy/adventure movies today.  
 
+## Actor Representation by Gender
+
 What about the relative representation of men and women in Hollywood? Overall proportions of men and women have not changed a whole lot (it's about 60-40). We see some interesting trends when we disaggregate the genders by age group. The following figure displays changes in proportions of men and women in Hollywood movies by age groups. Men are in the left plot and women are in the right plot. Each plot divides men and women into five age groups: under 18, 18-34, 35-49, 50-69, over 70. 
 
 ```{r, echo = FALSE, warning=FALSE}
@@ -660,8 +667,6 @@ scale_x_discrete(limits = c(1980, 1990, 2000, 2010),
 ```
 
 Look at the age breakdown of women in the left plot. The red, purple, and yellow layers represent women actors 49 and under. Even today, these groups make up about 80% of top-billed women actors. Older women remain highly underrepresented in Hollywood film. There's also a large discrepancy in representation between older women and older men, who appear to be about 4 times more prevalent than older women. This can be seen by comparing the green layers of the two plots.
-
-# Recap
 
 That concludes our journey through forty years of Hollywood film.  I hope you learned a thing or two. Please reach out to me if you have any questions about how I created these plots or the underlying data.  
 

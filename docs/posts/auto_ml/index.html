@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -151,7 +151,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#benchmarking-the-automl-tool" id="toc-benchmarking-the-automl-tool" class="nav-link active" data-scroll-target="#benchmarking-the-automl-tool">Benchmarking the AutoML Tool</a></li>
+  <li><a href="#feature-importance-and-feature-effects" id="toc-feature-importance-and-feature-effects" class="nav-link" data-scroll-target="#feature-importance-and-feature-effects">Feature importance and feature effects</a></li>
+  <li><a href="#time-series" id="toc-time-series" class="nav-link" data-scroll-target="#time-series">Time Series</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -191,8 +201,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Many companies use autoML for predictive modeling and to gain insights from their data. AutoML tools such as auto-sklearn are useful for establishing an accurate baseline model at the start of a new project. I decided to build a custom autoML tool tailored to my specific needs. These include being able to create accurate models from a wide range of data and visualize how model features influence a particular outcome.</p>
 <p>In this post, I demo my tool by testing it on some popular datasets. I show how the tool can produce plots for model evaluation and interpretation. Finally, I show that the tool can also be used for time series problems.</p>
-<section id="benchmarking-the-automl-tool" class="level3">
-<h3 class="anchored" data-anchor-id="benchmarking-the-automl-tool">Benchmarking the AutoML Tool</h3>
+<section id="benchmarking-the-automl-tool" class="level2">
+<h2 class="anchored" data-anchor-id="benchmarking-the-automl-tool">Benchmarking the AutoML Tool</h2>
 <p>I benchmark my autoML tool using the canonical Titanic dataset. This dataset contains demographic and ticket information for several hundred passengers of the Titanic. The outcome is whether a passenger survived the disaster.</p>
 <p>After importing the automl_tool package and preparing the data, I run the <code>fit_pipeline</code> method from the automl_tool package. Before fitting the model, I convert the Name feature to a pandas <code>String</code> dtype. The automl tool preprocesses features differently depending on the dtype. <code>String</code> columns are sent through scikit-learn’s <code>CountVectorizer</code>.</p>
 <div id="cell-4" class="cell" data-execution_count="33">
@@ -750,8 +760,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>The model did slightly better than a “Good job”, which is very good considering that we did no feature engineering beyond <code>auto_ml</code>’s automated preprocessing.</p>
 </section>
-<section id="model-interpretation---feature-importance-and-feature-effects" class="level3">
-<h3 class="anchored" data-anchor-id="model-interpretation---feature-importance-and-feature-effects">Model Interpretation - Feature importance and feature effects</h3>
+<section id="feature-importance-and-feature-effects" class="level2">
+<h2 class="anchored" data-anchor-id="feature-importance-and-feature-effects">Feature importance and feature effects</h2>
 <p>What were the most important features in our model? The <code>automl_tool</code> has a <code>get_feature_importance_scores</code> method that uses Shapley values to compute feature importance scores and a <code>plot_feature_importance</code> method to plot a ranking of these features. The tool also has an option to compute feature importance scores using permutation importance.</p>
 <div id="cell-14" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>titanic_automl.get_feature_importance_scores()</span>
@@ -796,8 +806,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>This tool can also handle regression tasks. Whether the <code>fit_pipeline</code> performs classification or regression depends on the <code>dtype</code> of the outcome variable. Classification models are used for <code>int</code> outcomes, and regression models are used for <code>float</code> outcomes.</p>
 </section>
-<section id="automl-and-time-series" class="level3">
-<h3 class="anchored" data-anchor-id="automl-and-time-series">AutoML and Time Series</h3>
+<section id="time-series" class="level2">
+<h2 class="anchored" data-anchor-id="time-series">Time Series</h2>
 <p>This tool works great for classification and regression problems, but what about time series? To apply machine learning methods to time series data, two things need to be taken into consideration. First, time series methods like ARIMA use lags of the dependent variable as predictors. A time series model may include hundreds of features derived from the dependent variable, such as lags at various time points, logarithmic transformations of these lags, and rolling averages.</p>
 <p>My autoML tool has a helper function called <code>ts_train_test_split</code> that applies these transformations to a time series dataset. The function takes an input dataset, an outcome variable, the names of the outcome and date fields, and two additional parameters for deriving features: <code>fdw</code> and <code>holdout_window</code>. <code>fdw</code>, the feature derivation window, determines the number of time periods used to derive features. For example, if <code>fdw</code>=12, <code>ts_train_test_split</code> will create 12 lags of the dependent variable (columns lagged 1 to 12 periods from the period of a given row), 12 log lags, and so on. The <code>holdout_window</code> parameter determines the split between the training set and the holdout set.</p>
 <p>The second thing that needs to be taken into consideration is how the method splits the data into training, validation, and holdout sets. The autoML tool handles this in two ways. First, <code>ts_train_test_split</code> uses the <code>holdout_window</code> parameter to let the user specify the number of periods to set aside for point-in-time backtesting. These periods come at the end of the time series dataset. Second, instead of using traditional five-fold cross validation, GridSearchCV uses an instance of <code>TimeSeriesSplit</code> to perform cross-validation. <code>TimeSeriesSplit</code> performs a special form of k-fold cross validation, using an expanding window as the training data and validating on time ranges that come after the training data (you can find a visualization of this at the bottom of <a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_cv_indices.html">this page</a>.</p>
