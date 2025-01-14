@@ -10,3 +10,8 @@
  #quarto-document-content {
     text-align: left;
 }
+
+.list.quarto-listing-default .thumbnail {
+    margin-bottom: 1.8rem;
+  }
+  
