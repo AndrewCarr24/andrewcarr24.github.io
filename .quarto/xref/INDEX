@@ -19,5 +19,8 @@
   },
   "publications.qmd": {
     "publications.html": "bf3f53c1"
+  },
+  "posts/sqlbot/index.ipynb": {
+    "index.html": "2523eb5f"
   }
 }
