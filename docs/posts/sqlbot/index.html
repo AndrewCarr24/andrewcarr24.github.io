@@ -198,8 +198,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="langchain" class="level2">
 <h2 class="anchored" data-anchor-id="langchain">LangChain</h2>
-<p>Since OpenAI released ChatGPT in 2022, there has been an explosion of large language models (LLMs) that take text and input and return text as output. At the same time, open source libraries have emerged for integrating LLMs into programmatic workflows. Maybe the most popular of these is LangChain, a framework for building applications centered around LLMs.</p>
-<p>LangChain makes it easy to build custom chatbots equipped with memory and tools. The simplest way to do this is to instantiate a chat model and use the <code>bind_tools</code> method to attach tools to the model. Tools are software that accepts parameters from the LLM and return some output based on these parameters. As tool use becomes standardized, it is increasingly common for LLM post-training to include handling tools. An LLM that supports tool use has been refined so that when it receives a prompt that looks like this -</p>
+<p>Since the release of ChatGPT in 2022, open source libraries have emerged for integrating large language models (LLMs) into programmatic workflows. Maybe the most popular of these is LangChain, a framework for building applications centered around LLMs.</p>
+<p>LangChain makes it easy to build custom chatbots equipped with memory and tools. The simplest way to do this is to instantiate a chat model and use the <code>bind_tools</code> method to attach tools to the model. Tools are software that accepts parameters from the LLM and return some output based on these parameters. As tool use becomes standardized, it is increasingly common for LLM post-training to include steps to improve tool use. An LLM that supports tool use has been refined so that when it receives a prompt that looks like this -</p>
 <div id="cell-3" class="cell" data-vscode="{&quot;languageId&quot;:&quot;powershell&quot;}">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>You are an AI assistant <span class="cf">with</span> access to the following tools:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -213,12 +213,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>User question: What <span class="kw">is</span> <span class="dv">8</span> times <span class="dv">3</span>?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The model knows to return this -</p>
+<p>The model returns this -</p>
 <div id="cell-5" class="cell" data-vscode="{&quot;languageId&quot;:&quot;powershell&quot;}">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Tool: multiply</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Arguments: {<span class="st">"a"</span>: <span class="dv">8</span>, <span class="st">"b"</span>: <span class="dv">3</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Which LangChain recognizes as parameters of a tool. The standardization of tool use is a big deal because it allows for the creation of applications that convert human language (input from a user) into machine-readable language.</p>
+<p>LangChain recognizes this as input for a tool. The standardization of tool use is a big deal because it allows for the creation of applications that convert human language (input from a user) into machine-readable language that can then be executed.</p>
 <p>LangChain also makes it easy to develop chatbots with memory. Giving a chatbot memory just means including previous conversation as context to a prompt. LangChain chat models have an <code>invoke</code> method that allows you to send a prompt with memory as a list of messages to an LLM.</p>
 <div id="cell-7" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_openai <span class="im">import</span> ChatOpenAI</span>
@@ -281,15 +281,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="sqlbot">SQLbot</h2>
 <p>In the remainder of this post, I will demo a chatbot I built using LangChain tools and messages. The chatbot is a command line utility called SQLbot. To get started with SQLbot, install the Python package from Github.</p>
 <p><code>pip install git+https://github.com/AndrewCarr24/sqlbot.git</code></p>
-<p>SQLbot is a simple chatbot with memory hooked up to a tool for converting prompts to SQL queries, running the queries on a local database, and returning the query results to the user. Before using the tool, you need to put a database in the directory from which you run the tool. The repo <code>https://github.com/AndrewCarr24/sqlbot.git</code> includes an example database in the input_data folder. This database, <code>chinook.db</code>, is a set of interconnected tables with data on albums, musical artists, tracks, customers, and invoices of album purchases. Download this db, open the terminal, and navigate to the directory where the db is located.</p>
+<p>SQLbot is a simple chatbot with memory hooked up to a tool for converting prompts to SQL queries, running the queries on a local database, and returning the query results to the user. Before using the tool, you need to put a database in the project directory. The repo <code>https://github.com/AndrewCarr24/sqlbot.git</code> includes an example database in the input_data folder. This database, <code>chinook.db</code>, is a set of interconnected tables with data on albums, musical artists, tracks, customers, and invoices of album purchases. Download this db, open the terminal, and navigate to the directory where the db is located.</p>
 <p><code>start_bot_tool --db chinook</code></p>
-<p>The <code>start_bot_tool</code> commands starts the SQLbot and the <code>chinook</code> argument connects the bot to <code>chinook.db</code>. When the bot starts up, you will see these messages on your screen.</p>
+<p>The <code>start_bot_tool</code> commands starts the SQLbot and the <code>chinook</code> argument connects the bot to <code>chinook.db</code>. The LLM that this bot uses is OpenAI’s GPT 4o-mini. Your project directory should have a <code>.env</code> file with your OpenAI API key (OPENAI_API_KEY=[INSERT KEY HERE]). If you do not have this file in your project directory, the bot will ask you to enter a key.</p>
+<p>When the bot starts up, you will see these messages on your screen.</p>
 <p><a href="img/sqlbot_img1.png"><img src="img/sqlbot_img1.png" class="img-fluid"></a></p>
 <p>These messages indicate that an initial prompt is being sent to the LLM to collect db metadata. The LLM’s response is then fed into the system prompt so that the bot has some preliminary knowledge about the db upon startup. You can confirm this worked by asking the bot about the db to which it is connected.</p>
 <p><a href="img/sqlbot_img2.png"><img src="img/sqlbot_img2.png" class="img-fluid"></a></p>
-<p>We can easily get information on things like the top customers by money spend on invoices. To learn how the LLM arrived it its solution. You can ask for the query it used in a follow-up question.</p>
+<p>We can easily get information on things like the top customers by money spent on invoices. To learn how the LLM arrived it its solution, you can ask for the query it used in a follow-up question.</p>
 <p><a href="img/sqlbot_img3.png"><img src="img/sqlbot_img3.png" class="img-fluid"></a></p>
-<p>Be can check that SQLbot ran this query by copying the query and running it with the <code>sqlite3</code> Python package.</p>
+<p>We can check that SQLbot ran this query by running it with the <code>sqlite3</code> Python package.</p>
 <div id="cell-25" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -327,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This matches the result that SQLbot gave us. Type <code>/e</code> to exit the SQLbot utility.</p>
-<p>That concludes this overview of SQLbot. For a deeper understanding of how I built this tool, check out the <code>src/sqlbot</code> folder of the Github repo. The <code>run_from_terminal.py</code> script is the implementation of SQLbot as a command line tool, and <code>sqlbot.py</code> in the <code>chatbot</code> folder has the code for applying tools and memory to a LangChain chat model.</p>
+<p>That concludes this overview of SQLbot. For a deeper understanding of how I built this tool, check out the <code>src/sqlbot</code> folder of the Github repo. The <code>run_from_terminal.py</code> script is the implementation of SQLbot as a command line tool. <code>sqlbot.py</code> in the <code>chatbot</code> folder has the code for using a LangChain chat model with tools and memory.</p>
 
 
 </section>
