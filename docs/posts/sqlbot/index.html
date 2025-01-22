@@ -289,7 +289,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="img/sqlbot_img2.png"><img src="img/sqlbot_img2.png" class="img-fluid"></a></p>
 <p>We can easily get information on things like the top customers by money spend on invoices. To learn how the LLM arrived it its solution. You can ask for the query it used in a follow-up question.</p>
 <p><a href="img/sqlbot_img3.png"><img src="img/sqlbot_img3.png" class="img-fluid"></a></p>
-<div id="cell-24" class="cell" data-execution_count="30">
+<p>Be can check that SQLbot ran this query by copying the query and running it with the <code>sqlite3</code> Python package.</p>
+<div id="cell-25" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -325,6 +326,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 9          25    Victor     Stevens       42.62</code></pre>
 </div>
 </div>
+<p>This matches the result that SQLbot gave us. Type <code>/e</code> to exit the SQLbot utility.</p>
+<p>That concludes this overview of SQLbot. For a deeper understanding of how I built this tool, check out the <code>src/sqlbot</code> folder of the Github repo. The <code>run_from_terminal.py</code> script is the implementation of SQLbot as a command line tool, and <code>sqlbot.py</code> in the <code>chatbot</code> folder has the code for applying tools and memory to a LangChain chat model.</p>
 
 
 </section>
