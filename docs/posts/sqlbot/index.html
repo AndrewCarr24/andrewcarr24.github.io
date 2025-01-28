@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#langchain" id="toc-langchain" class="nav-link active" data-scroll-target="#langchain">LangChain</a></li>
+  <li><a href="#building-apps-with-langchain" id="toc-building-apps-with-langchain" class="nav-link active" data-scroll-target="#building-apps-with-langchain">Building apps with LangChain</a></li>
   <li><a href="#sqlbot" id="toc-sqlbot" class="nav-link" data-scroll-target="#sqlbot">SQLbot</a></li>
   </ul>
 </nav>
@@ -196,8 +196,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="langchain" class="level2">
-<h2 class="anchored" data-anchor-id="langchain">LangChain</h2>
+<section id="building-apps-with-langchain" class="level2">
+<h2 class="anchored" data-anchor-id="building-apps-with-langchain">Building apps with LangChain</h2>
 <p>Since the release of ChatGPT in 2022, open source libraries have emerged for integrating large language models (LLMs) into programmatic workflows. Maybe the most popular of these is LangChain, a framework for building applications centered around LLMs.</p>
 <p>LangChain makes it easy to build custom chatbots equipped with memory and tools. The simplest way to do this is to instantiate a chat model and use the <code>bind_tools</code> method to attach tools to the model. Tools are software that accepts parameters from the LLM and return some output based on these parameters. As tool use becomes standardized, it is increasingly common for LLM post-training to include steps to improve tool use. An LLM that supports tool use has been refined so that when it receives a prompt that looks like this -</p>
 <div id="cell-3" class="cell" data-vscode="{&quot;languageId&quot;:&quot;powershell&quot;}">
