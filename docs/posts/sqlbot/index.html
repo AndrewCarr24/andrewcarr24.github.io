@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="building-apps-with-langchain" class="level2">
 <h2 class="anchored" data-anchor-id="building-apps-with-langchain">Building apps with LangChain</h2>
 <p>Since the release of ChatGPT in 2022, open source libraries have emerged for integrating large language models (LLMs) into programmatic workflows. Maybe the most popular of these is LangChain, a framework for building applications centered around LLMs.</p>
-<p>LangChain makes it easy to build custom chatbots equipped with memory and tools. The simplest way to do this is to instantiate a chat model and use the <code>bind_tools</code> method to attach tools to the model. Tools are software that accepts parameters from the LLM and return some output based on these parameters. As tool use becomes standardized, it is increasingly common for LLM post-training to include steps to improve tool use. An LLM that supports tool use has been refined so that when it receives a prompt that looks like this -</p>
+<p>LangChain makes it easy to build custom chatbots equipped with memory and tools. The simplest way to do this is to instantiate a chat model and use the <code>bind_tools</code> method to attach tools to the model. Tools accept parameters from the LLM and return some output based on these parameters. An LLM that supports tool use has been refined so that when it receives a prompt that looks like this -</p>
 <div id="cell-3" class="cell" data-vscode="{&quot;languageId&quot;:&quot;powershell&quot;}">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>You are an AI assistant <span class="cf">with</span> access to the following tools:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>AIMessage(content='Sure! You asked about the boiling point of water, and I informed you that it is 100 degrees Celsius (212 degrees Fahrenheit) at standard atmospheric pressure, noting that it can vary with changes in atmospheric pressure.', additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 44, 'prompt_tokens': 102, 'total_tokens': 146, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_72ed7ab54c', 'finish_reason': 'stop', 'logprobs': None}, id='run-c83d6436-b888-43a7-b625-419f61a1caeb-0', usage_metadata={'input_tokens': 102, 'output_tokens': 44, 'total_tokens': 146, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}})</code></pre>
 </div>
 </div>
-<p>We can of course append this response to the message list and continue the conversation in this way.</p>
+<p>We can append this response to the message list and continue the conversation in this way.</p>
 <div id="cell-11" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>msg_lst.append(bot_followup_response)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>msg_lst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="img/sqlbot_img1.png"><img src="img/sqlbot_img1.png" class="img-fluid"></a></p>
 <p>These messages indicate that an initial prompt is being sent to the LLM to collect db metadata. The LLM’s response is then fed into the system prompt so that the bot has some preliminary knowledge about the db upon startup. You can confirm this worked by asking the bot about the db to which it is connected.</p>
 <p><a href="img/sqlbot_img2.png"><img src="img/sqlbot_img2.png" class="img-fluid"></a></p>
-<p>We can easily get information on things like the top customers by money spent on invoices. To learn how the LLM arrived it its solution, you can ask for the query it used in a follow-up question.</p>
+<p>We can then get information on things like the top customers by the amount of money spent on albums. To learn how the LLM arrived it its solution, you can ask for the query it used in a follow-up question.</p>
 <p><a href="img/sqlbot_img3.png"><img src="img/sqlbot_img3.png" class="img-fluid"></a></p>
 <p>We can check that SQLbot ran this query by running it with the <code>sqlite3</code> Python package.</p>
 <div id="cell-25" class="cell" data-execution_count="30">
@@ -328,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This matches the result that SQLbot gave us. Type <code>/e</code> to exit the SQLbot utility.</p>
-<p>That concludes this overview of SQLbot. For a deeper understanding of how I built this tool, check out the <code>src/sqlbot</code> folder of the Github repo. The <code>run_from_terminal.py</code> script is the implementation of SQLbot as a command line tool. <code>sqlbot.py</code> in the <code>chatbot</code> folder has the code for using a LangChain chat model with tools and memory.</p>
+<p>This concludes my overview of SQLbot. For a deeper understanding of how I built this tool, check out the <code>src/sqlbot</code> folder of the Github repo (<a href="https://github.com/AndrewCarr24/sqlbot">github.com/AndrewCarr24/sqlbot</a>). The <code>run_from_terminal.py</code> script is the implementation of SQLbot as a command line tool. <code>sqlbot.py</code> in the <code>chatbot</code> folder has the code for using a LangChain chat model with tools and memory.</p>
 
 
 </section>

@@ -2,3 +2,4 @@
 /.quarto/
 /posts/sqlbot/.env
 .env
+/posts/.DS_Store
