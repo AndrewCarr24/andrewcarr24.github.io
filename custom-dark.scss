@@ -121,3 +121,10 @@ $code-block-bg-alpha: -0.8;
 .quarto-listing .listing-title a:hover {
     color: #6db3f2;
 }
+
+/* Reset code chunks to dark mode default */
+pre.sourceCode,
+div.sourceCode {
+    background-color: #2b2b2b !important;
+    border-left: none !important;
+}

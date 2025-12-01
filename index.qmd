@@ -16,6 +16,6 @@ title-block-banner: false
 
 I'm a data scientist in the Raleigh-Durham area. I use this blog to think through some of the projects I'm working on.
 
----
+
 
 

@@ -1,5 +1,23 @@
 {
+  "posts/sqlbot/index.ipynb": {
+    "index.html": "4139c8cc"
+  },
+  "posts/film/index.qmd": {
+    "index.html": "78e00b61"
+  },
+  "posts/beer/beer_post.qmd": {
+    "beer_post.html": "08460111"
+  },
+  "posts/auto_ml/index.ipynb": {
+    "index.html": "4c2c05c3"
+  },
   "index.qmd": {
-    "index.html": "3b7fcadb"
+    "index.html": "2a5d2e91"
+  },
+  "publications.qmd": {
+    "publications.html": "2a11a024"
+  },
+  "about.qmd": {
+    "about.html": "fa07acad"
   }
 }

@@ -105,6 +105,10 @@ body.quarto-dark .navbar .nav-link:hover {
     padding: 0 !important;
 }
 
+#listing-listing h3.listing-title {
+    margin-bottom: 0.35rem !important;
+}
+
 #listing-listing .quarto-post .metadata {
     margin: 0 !important;
     padding: 0 !important;
