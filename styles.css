@@ -95,43 +95,57 @@ body.quarto-dark .navbar .nav-link:hover {
     margin-top: 1.5rem;
 }
 
-.quarto-listing .listing-item {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
-    padding: 1.25rem 0;
+/* Target ALL elements that could create space */
+#listing-listing .quarto-post {
+    display: block !important;
 }
 
-.quarto-listing .listing-item:last-child {
-    border-bottom: none;
+#listing-listing .quarto-post .body {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.quarto-listing .listing-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+#listing-listing .quarto-post .metadata {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0.15rem !important;
 }
 
-.quarto-listing .listing-title a {
-    text-decoration: none;
+#listing-listing .listing-description {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.quarto-listing .listing-title a:hover {
-    color: #2780e3;
+#listing-listing .listing-description p {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.quarto-listing .listing-description {
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-    opacity: 0.8;
+#listing-listing .delink {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
 }
 
-.quarto-listing .listing-date {
-    font-size: 0.85rem;
-    opacity: 0.6;
+#listing-listing .delink a {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
 }
 
-.quarto-listing .listing-reading-time {
-    font-size: 0.85rem;
-    opacity: 0.6;
+#listing-listing .delink p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing .metadata a {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing .listing-date {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Hide images in listing */

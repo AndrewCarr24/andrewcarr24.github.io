@@ -81,12 +81,17 @@ $footer-bg: #f3f4f6; // Match body bg
     font-size: 1rem;
     font-weight: 400;
     color: #555;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     text-align: left;
 }
 
 .quarto-listing-default .listing-description p {
     margin-bottom: 0;
+}
+
+/* Reduce gap between body and metadata */
+.quarto-listing-default .quarto-post .body {
+    margin-bottom: 0.25rem;
 }
 
 /* Date - Bottom, smaller, grey */

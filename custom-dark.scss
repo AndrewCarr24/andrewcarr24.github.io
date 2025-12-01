@@ -77,12 +77,17 @@ $code-block-bg-alpha: -0.8;
     font-size: 1rem;
     font-weight: 400;
     color: #b0b0b0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     text-align: left;
 }
 
 .quarto-listing-default .listing-description p {
     margin-bottom: 0;
+}
+
+/* Reduce gap between body and metadata */
+.quarto-listing-default .quarto-post .body {
+    margin-bottom: 0.25rem;
 }
 
 /* Date */
