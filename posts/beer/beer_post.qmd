@@ -3,8 +3,8 @@ title: Building a Recommendation System with Beer Data
 author: Andrew Carr
 date: 2019-07-16
 categories: [machine learning]
-image: "img/beer_img.webp"
 toc: true
+description: "Creating a beer recommender system using item-based collaborative filtering on 5.5 million ratings."
 ---
 
 Beer culture in the United States has changed dramatically in the past decade or so. This trend is reflected in the development of a vibrant community of people who rate, review, and share information about beers online. Websites like BeerAdvocate, RateBeer, and Untappd give beer drinkers a place to share their tastes with others. Surprisingly, these sites do not recommend new beers to their users. This inspired me to create a recommender system by scraping data from these sites. While some beer sites prohibit web scraping, others only disallow scraping their data for commercial use. Others place no restrictions on scraping at all. For this project, I only scraped sites that do not forbid scraping in a robots.txt file. Ethical (and legal) web scraping has been made easier with the recent development of the polite R package.

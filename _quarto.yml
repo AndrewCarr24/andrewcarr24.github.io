@@ -5,14 +5,22 @@ project:
 website:
   title: "Andrew Carr"
   navbar:
+    background: light
     right:
       - about.qmd
       - publications.qmd
       - icon: github
         href: https://github.com/AndrewCarr24
+      - icon: linkedin
+        href: https://www.linkedin.com/in/andrew-carr24
+  page-footer:
+    center: "© 2025 Andrew Carr"
+
 format:
   html:
-    theme: flatly
+    theme:
+      light: [flatly, custom.scss]
+      dark: [darkly, custom-dark.scss]
     css: styles.css
   
 execute:

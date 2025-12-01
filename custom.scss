@@ -1,0 +1,116 @@
+/*-- scss:defaults --*/
+
+// Typography - System Fonts for "Professional" look
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+$body-bg: #f3f4f6; // Light grey background for contrast
+$body-color: #2e2e33;
+$link-color: #2e2e33;
+$link-decoration: none;
+
+// Navbar - Minimalist
+$navbar-bg: #ffffff;
+$navbar-fg: #2e2e33;
+
+// Cleaner footer
+$footer-bg: #f3f4f6; // Match body bg
+
+/*-- scss:rules --*/
+
+/* Navbar styling - blend with background */
+.navbar {
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background-color: #ffffff !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Post Listing Styling - Lilian Weng Style */
+.quarto-listing-default .quarto-post {
+    background-color: #ffffff;
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Reorder: put body first, metadata (date) second */
+.quarto-listing-default .quarto-post .body {
+    order: 1;
+    text-align: left;
+}
+
+.quarto-listing-default .quarto-post .metadata {
+    order: 2;
+    text-align: left;
+}
+
+/* Title - Bold, larger */
+.quarto-listing-default .listing-title {
+    font-size: 1.4rem;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem;
+    color: #2e2e33;
+    text-decoration: none;
+    text-align: left;
+}
+
+.quarto-listing-default h3.listing-title {
+    font-weight: 700 !important;
+}
+
+.quarto-listing-default .listing-title a {
+    color: #2e2e33 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+}
+
+.quarto-listing-default .listing-title a:hover {
+    color: #555 !important;
+}
+
+/* Description - Normal weight */
+.quarto-listing-default .listing-description {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.quarto-listing-default .listing-description p {
+    margin-bottom: 0;
+}
+
+/* Date - Bottom, smaller, grey */
+.quarto-listing-default .listing-date {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #888;
+    text-align: left;
+}
+
+/* Hide any author or reading time if present */
+.quarto-listing-default .listing-author,
+.quarto-listing-default .listing-reading-time {
+    display: none !important;
+}
+
+/* Dark mode toggle styling */
+.quarto-color-scheme-toggle {
+    margin-left: 0.5rem;
+}
+
+/* Footer styling */
+.nav-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    padding-top: 1rem;
+}
