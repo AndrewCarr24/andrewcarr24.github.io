@@ -3,8 +3,8 @@ title: Are We in Kansas Anymore?
 author: Andrew Carr
 date: 2019-11-01
 categories: [data viz]
-image: "post_pic_dalle.webp"
 toc: true
+description: "Analyzing trends in Hollywood film over four decades using data scraped from Wikipedia."
 ---
 
 In this post, I examine how Hollywood film has changed over the past few decades. I look at the changing relationship between genre and movie box office returns, shifts in the representation of men and women among top-billed actors, and the relationship between critical and commercial success. I conduct these analyses using data that I collected through Wikipedia's APIs. The data consists of 9712 movies. The population frame is all movies with Wikipedia entries released in the United States between 1980 and 2019. 

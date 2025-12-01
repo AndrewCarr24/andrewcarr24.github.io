@@ -1,0 +1,130 @@
+/*-- scss:defaults --*/
+
+// Dark mode colors - Lil'Log Palette
+$body-bg: #1d1e20;
+$body-color: #e0e0e0;
+$link-color: #e0e0e0;
+
+// Navbar - Minimalist Dark
+$navbar-bg: #1d1e20;
+$navbar-fg: #e0e0e0;
+
+// Footer
+$footer-bg: #1d1e20;
+
+// Code blocks
+$code-block-bg-alpha: -0.8;
+
+/*-- scss:rules --*/
+
+/* Navbar styling - blend with background */
+.navbar {
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background-color: #1d1e20 !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Post Listing Styling - Dark Mode Lilian Weng Style */
+.quarto-listing-default .quarto-post {
+    background-color: #2e2e33;
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Reorder: put body first, metadata (date) second */
+.quarto-listing-default .quarto-post .body {
+    order: 1;
+    text-align: left;
+}
+
+.quarto-listing-default .quarto-post .metadata {
+    order: 2;
+    text-align: left;
+}
+
+/* Title */
+.quarto-listing-default .listing-title {
+    font-size: 1.4rem;
+    font-weight: 700 !important;
+    color: #e0e0e0 !important;
+    text-align: left;
+}
+
+.quarto-listing-default h3.listing-title {
+    font-weight: 700 !important;
+}
+
+.quarto-listing-default .listing-title a {
+    color: #e0e0e0 !important;
+    font-weight: 700 !important;
+}
+
+.quarto-listing-default .listing-title a:hover {
+    color: #6db3f2 !important;
+}
+
+/* Description */
+.quarto-listing-default .listing-description {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #b0b0b0;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.quarto-listing-default .listing-description p {
+    margin-bottom: 0;
+}
+
+/* Reduce gap between body and metadata */
+.quarto-listing-default .quarto-post .body {
+    margin-bottom: 0.25rem;
+}
+
+/* Date */
+.quarto-listing-default .listing-date {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #888;
+    text-align: left;
+}
+
+/* Hide any author or reading time if present */
+.quarto-listing-default .listing-author,
+.quarto-listing-default .listing-reading-time {
+    display: none !important;
+}
+
+/* Footer styling */
+.nav-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Post listing in dark mode */
+.quarto-listing .listing-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.quarto-listing .listing-title a {
+    color: #e0e0e0;
+}
+
+.quarto-listing .listing-title a:hover {
+    color: #6db3f2;
+}
+
+/* Reset code chunks to dark mode default */
+pre.sourceCode,
+div.sourceCode {
+    background-color: #2b2b2b !important;
+    border-left: none !important;
+}

@@ -1,29 +1,23 @@
 {
-  "index.qmd": {
-    "index.html": "36f9db4b"
-  },
-  "posts/post-with-code/index.qmd": {
-    "index.html": "1d6eca99"
-  },
-  "posts/welcome/index.qmd": {
-    "index.html": "8091d48e"
-  },
-  "about.qmd": {
-    "about.html": "a48dc39b"
+  "posts/sqlbot/index.ipynb": {
+    "index.html": "4139c8cc"
   },
   "posts/film/index.qmd": {
-    "index.html": "87ab6e6a"
-  },
-  "posts/auto_ml/index.ipynb": {
-    "index.html": "fa3c4c39"
-  },
-  "publications.qmd": {
-    "publications.html": "bf3f53c1"
-  },
-  "posts/sqlbot/index.ipynb": {
-    "index.html": "2523eb5f"
+    "index.html": "78e00b61"
   },
   "posts/beer/beer_post.qmd": {
-    "beer_post.html": "847b2ea1"
+    "beer_post.html": "08460111"
+  },
+  "posts/auto_ml/index.ipynb": {
+    "index.html": "4c2c05c3"
+  },
+  "index.qmd": {
+    "index.html": "2a5d2e91"
+  },
+  "publications.qmd": {
+    "publications.html": "2a11a024"
+  },
+  "about.qmd": {
+    "about.html": "fa07acad"
   }
 }

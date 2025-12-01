@@ -1,17 +1,199 @@
 /* css styles */
+
+/* ===== Global Typography ===== */
+body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ===== Navbar - Distinct from Background ===== */
+.navbar {
+    /* background-color: var(--bs-body-bg) !important; */
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+/* Override dark theme on navbar */
+.navbar[data-bs-theme="dark"] {
+    --bs-navbar-color: #e0e0e0 !important;
+    --bs-navbar-hover-color: #6db3f2 !important;
+}
+
+.navbar .navbar-brand {
+    font-weight: 600;
+    color: #000000 !important;
+    opacity: 1 !important;
+    z-index: 1050;
+}
+
+.navbar .nav-link {
+    color: #000000 !important;
+    opacity: 1 !important;
+    z-index: 1050;
+}
+
+.navbar .nav-link:hover {
+    color: #2780e3 !important;
+}
+
+/* Dark mode overrides for navbar text */
+body.quarto-dark .navbar .navbar-brand {
+    color: #e0e0e0 !important;
+}
+
+body.quarto-dark .navbar .nav-link {
+    color: #e0e0e0 !important;
+}
+
+body.quarto-dark .navbar .nav-link:hover {
+    color: #6db3f2 !important;
+}
+
+/* Move dark mode toggle to the LEFT, right after brand name */
+.navbar-container.container-fluid {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.navbar-brand-container {
+    display: flex;
+    align-items: center;
+    margin-right: 0 !important;
+}
+
+/* Position the toggle tools right after brand */
+.quarto-navbar-tools {
+    order: 0;
+    margin-left: 0.5rem;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.quarto-navbar-tools .quarto-color-scheme-toggle {
+    padding: 0.25rem;
+}
+
+/* ===== Homepage Intro ===== */
+.quarto-title {
+    margin-bottom: 0.5rem;
+}
+
+#quarto-content > * > main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ===== Post Listing Styles ===== */
+.quarto-listing {
+    margin-top: 1.5rem;
+}
+
+/* Target ALL elements that could create space */
+#listing-listing .quarto-post {
+    display: block !important;
+}
+
+#listing-listing .quarto-post .body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing h3.listing-title {
+    margin-bottom: 0.35rem !important;
+}
+
+#listing-listing .quarto-post .metadata {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0.15rem !important;
+}
+
+#listing-listing .listing-description {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing .listing-description p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing .delink {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+#listing-listing .delink a {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+#listing-listing .delink p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing .metadata a {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#listing-listing .listing-date {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hide images in listing */
+.quarto-listing .thumbnail,
+.quarto-listing .listing-image {
+    display: none !important;
+}
+
+/* ===== About Page ===== */
 .about-image {
-     border-radius: 0 !important;
-     object-fit: contain !important;
-     width: auto !important;
-     height: auto !important;
-     max-width: 30%;
- }
- 
- #quarto-document-content {
+    border-radius: 0 !important;
+    object-fit: contain !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 30%;
+}
+
+#quarto-document-content {
     text-align: left;
 }
 
-.list.quarto-listing-default .thumbnail {
-    margin-bottom: 1.8rem;
-  }
+/* ===== Post Content ===== */
+.quarto-post-content {
+    max-width: 750px;
+}
+
+/* ===== Footer ===== */
+.nav-footer {
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: var(--bs-body-bg) !important;
+}
+
+/* ===== Dark Mode Toggle ===== */
+.quarto-color-scheme-toggle {
+    border: none !important;
+    background: transparent !important;
+    color: var(--bs-body-color) !important;
+}
+
+.quarto-color-scheme-toggle:hover {
+    color: var(--bs-link-color) !important;
+}
+
+.quarto-color-scheme-toggle .bi {
+    font-size: 1.1rem;
+}
   
