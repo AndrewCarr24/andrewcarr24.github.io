@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Andrew Carr">
+<meta name="dcterms.date" content="2025-12-08">
+<meta name="description" content="A comparison of AutoML to Prophet and sktime.">
 
-<title>👋 Welcome to my blog – Andrew Carr</title>
+<title>Benchmarking AutoML for Time Series Forecasting – Andrew Carr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,32 +23,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-75f156ea4d3bf2f701f8e58132300531.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-75f156ea4d3bf2f701f8e58132300531.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,70 +109,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-    const options = {
-      valueNames: ['listing-title','listing-description','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -305,7 +286,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Andrew Carr</span>
     </a>
   </div>
@@ -316,11 +297,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link" href="../../publications.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item compact">
@@ -345,21 +326,52 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#benchmarking-automl-against-prophet-and-sktime" id="toc-benchmarking-automl-against-prophet-and-sktime" class="nav-link active" data-scroll-target="#benchmarking-automl-against-prophet-and-sktime">Benchmarking AutoML against Prophet and sktime</a></li>
+  <li><a href="#which-models-did-automl-favor" id="toc-which-models-did-automl-favor" class="nav-link" data-scroll-target="#which-models-did-automl-favor">Which models did AutoML favor?</a></li>
+  <li><a href="#the-power-of-elasticnets-for-time-series" id="toc-the-power-of-elasticnets-for-time-series" class="nav-link" data-scroll-target="#the-power-of-elasticnets-for-time-series">The power of ElasticNets for time series</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">👋 Welcome to my blog</h1>
-</div>
+<h1 class="title">Benchmarking AutoML for Time Series Forecasting</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">machine learning</div>
+    <div class="quarto-category">time series</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    A comparison of AutoML to Prophet and sktime.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Andrew Carr </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 8, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -369,101 +381,269 @@ window.Quarto = {
 </header>
 
 
-<p>I’m a data scientist in the Raleigh-Durham area. I use this blog to think through some of the projects I’m working on.</p>
+<p>Over the past year, I have been developing a Python package for automated machine learning (AutoML). While I mainly use the package for standard supervised learning, I have recently begun using it for time series. The workflow is the same: fitting several models and selecting the model with highest out-of-sample accuracy.</p>
+<p>However, the time series mode of the package has a few differences. First, instead of standard k-fold cross-validation, the time series mode uses <code>TimeSeriesSplit</code> from scikit-learn. Rather than partitioning the data into random folds, <code>TimeSeriesSplit</code> uses an expanding window. Each CV iteration evaluates on a test set that follows the training set, while the training set grows to include all prior data:</p>
+<div style="text-align: center;">
+<p><img src="img/ts_split.png" style="width: 60%;"></p>
+</div>
+<p>The other difference with time series mode is the use of automated feature engineering. The tool generates several transformations of the dependent variable – lags, rolling averages, and cyclical features (sine transformations for seasonality) – to use as predictors. My hypothesis was that training ElasticNet and gradient boosting models on these engineered features would yield accurate forecasts. This approach is based in part on my experience with enterprise AutoML platforms like DataRobot, which use a similar methods.</p>
+<p>Finally, the time series mode of my tool includes classical statistical models such as Exponential Smoothing and ARIMA that ignore the transformed features and model the original series directly.</p>
+<section id="benchmarking-automl-against-prophet-and-sktime" class="level3">
+<h3 class="anchored" data-anchor-id="benchmarking-automl-against-prophet-and-sktime">Benchmarking AutoML against Prophet and sktime</h3>
+<p>To benchmark my tool, I compared AutoML to Facebook Prophet and a comprehensive set of models from the sktime library.</p>
+<p>I used a variety of datasets, including real-world series from the Federal Reserve Economic Database (unemployment rate, the consumer price index, industrial production), synthetic datasets (linear trends, quadratic and logistic functions), and a sample atmospheric CO2 dataset from <code>statsmodels</code>.</p>
+<p>You can find the notebook showing how the data was created and the models were trained <a href="https://github.com/AndrewCarr24/automl_tool/blob/main/misc/compare_automl_prophet_sktime.ipynb">here</a>.</p>
+<p>Here is a table comparing mean absolute errors (MAEs) for each framework. These were calculated using a rolling one-step ahead forecast over a holdout set comprising the final 24 periods of each time series.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Series</th>
+<th>Type</th>
+<th>AutoML MAE</th>
+<th>Prophet MAE</th>
+<th>sktime MAE</th>
+<th>Winner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Seasonal+Trend</td>
+<td>Synthetic</td>
+<td>1.76</td>
+<td>1.91</td>
+<td>1.57</td>
+<td>sktime</td>
+</tr>
+<tr class="even">
+<td>Linear Trend</td>
+<td>Synthetic</td>
+<td>2.18</td>
+<td>2.23</td>
+<td>2.15</td>
+<td>sktime</td>
+</tr>
+<tr class="odd">
+<td>Quadratic</td>
+<td>Synthetic</td>
+<td>1.54</td>
+<td>12.32</td>
+<td>1.44</td>
+<td>sktime</td>
+</tr>
+<tr class="even">
+<td>Logistic (S-curve)</td>
+<td>Synthetic</td>
+<td>2.50</td>
+<td>2.87</td>
+<td>2.32</td>
+<td>sktime</td>
+</tr>
+<tr class="odd">
+<td>Random Walk (drift)</td>
+<td>Synthetic</td>
+<td>0.72</td>
+<td>1.69</td>
+<td>1.48</td>
+<td>automl</td>
+</tr>
+<tr class="even">
+<td>Piecewise (changepoints)</td>
+<td>Synthetic</td>
+<td>1.92</td>
+<td>1.91</td>
+<td>2.97</td>
+<td>prophet</td>
+</tr>
+<tr class="odd">
+<td>Spiky Intermittent</td>
+<td>Synthetic</td>
+<td>1.67</td>
+<td>1.64</td>
+<td>1.66</td>
+<td>prophet</td>
+</tr>
+<tr class="even">
+<td>Multi-seasonal</td>
+<td>Synthetic</td>
+<td>1.46</td>
+<td>1.40</td>
+<td>1.58</td>
+<td>prophet</td>
+</tr>
+<tr class="odd">
+<td>CO2</td>
+<td>Real (statsmodels)</td>
+<td>0.25</td>
+<td>0.37</td>
+<td>0.29</td>
+<td>automl</td>
+</tr>
+<tr class="even">
+<td>CPIAUCSL</td>
+<td>Real (FRED)</td>
+<td>0.44</td>
+<td>1.53</td>
+<td>2.90</td>
+<td>automl</td>
+</tr>
+<tr class="odd">
+<td>UNRATE</td>
+<td>Real (FRED)</td>
+<td>0.12</td>
+<td>0.28</td>
+<td>0.17</td>
+<td>automl</td>
+</tr>
+<tr class="even">
+<td>INDPRO</td>
+<td>Real (FRED)</td>
+<td>0.46</td>
+<td>0.72</td>
+<td>1.66</td>
+<td>automl</td>
+</tr>
+<tr class="odd">
+<td><strong>Average</strong></td>
+<td></td>
+<td><strong>1.25</strong></td>
+<td><strong>2.41</strong></td>
+<td><strong>1.68</strong></td>
+<td><strong>automl</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Among these time series, AutoML outperformed the other tools on real world data. sktime and Prophet did better on the synthetic functions, but even on these AutoML wasn’t far behind. This is reflected in the average MAE: AutoML had an average MAE of 1.25, compared to 1.68 for sktime and 2.41 for Prophet.</p>
+</section>
+<section id="which-models-did-automl-favor" class="level3">
+<h3 class="anchored" data-anchor-id="which-models-did-automl-favor">Which models did AutoML favor?</h3>
+<p>The table below shows the winning model for each time series and framework (check out my introduction AutoML post to learn how to use the package).</p>
+<div id="2dac9562" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(pd.read_csv(<span class="st">'input_data/combined_performance.csv'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> [[<span class="st">'series'</span>, <span class="st">'automl_winner'</span>, <span class="st">'prophet_winner'</span>, <span class="st">'sktime_winner'</span>]]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> .rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">'_'</span>, <span class="st">' '</span>).title())</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> .dropna()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Series</th>
+<th data-quarto-table-cell-role="th">Automl Winner</th>
+<th data-quarto-table-cell-role="th">Prophet Winner</th>
+<th data-quarto-table-cell-role="th">Sktime Winner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Seasonal+Trend</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.005 SPS: 15.0 Seasonality: additive...</td>
+<td>XGB-Reduction</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Linear Trend</td>
+<td>SimpleESRegressor</td>
+<td>GAM CPS: 0.5 SPS: 5.0 Seasonality: additive Gr...</td>
+<td>EnsembleTop3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Quadratic</td>
+<td>AutoARIMARegressor</td>
+<td>GAM CPS: 0.05 SPS: 15.0 Seasonality: multiplic...</td>
+<td>Trend2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Logistic (S-curve)</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.5 SPS: 15.0 Seasonality: multiplica...</td>
+<td>ETS-add-none-sp1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Random Walk (drift)</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.5 SPS: 5.0 Seasonality: additive Gr...</td>
+<td>ETS-none-add-sp12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Piecewise (changepoints)</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.05 SPS: 5.0 Seasonality: additive G...</td>
+<td>ETS-add-add-sp12</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Spiky Intermittent</td>
+<td>SimpleESRegressor</td>
+<td>GAM CPS: 0.05 SPS: 5.0 Seasonality: multiplica...</td>
+<td>ETS-add-add-damped-sp12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Multi-seasonal</td>
+<td>SimpleESRegressor</td>
+<td>GAM CPS: 0.5 SPS: 15.0 Seasonality: multiplica...</td>
+<td>RF-Reduction</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>CO2</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.005 SPS: 15.0 Seasonality: additive...</td>
+<td>XGB-Reduction</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>CPIAUCSL</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.05 SPS: 15.0 Seasonality: multiplic...</td>
+<td>Naive-drift</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>UNRATE</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.005 SPS: 15.0 Seasonality: additive...</td>
+<td>EnsembleTop3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>INDPRO</td>
+<td>ElasticNet</td>
+<td>GAM CPS: 0.05 SPS: 15.0 Seasonality: additive ...</td>
+<td>Naive-last</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Most of the best performing models from my AutoML tool are ElasticNet models. AutoML selects the ElasticNet model with the optimal alpha and l1_ratio (ratio of L1 to L2 regularization) terms. For some of the synthetic series, the best models were exponential smoothing and ARIMA.</p>
+<p>Prophet models are an implementation of GAMs (generalized additive models) for time series. For each series, I used hyperparameter tuning to select a GAM with the optimal changepoint prior scale, seasonality prior scale, seasonality model, and other hyperparameters.</p>
+<p>sktime displayed the greatest variety of winning models. The framework favored exponential smoothing (ETS) for several series. The best sktime models also included ensemble models – random forests (RF-Reduction), gradient boosting (XGB-Reduction), and stacking (EnsembleTop3). Quadratic (Trend2), and rule-based (Naive-last) models were also selected.</p>
+</section>
+<section id="the-power-of-elasticnets-for-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="the-power-of-elasticnets-for-time-series">The power of ElasticNets for time series</h3>
+<p>My main takeaway from this exercise, aside from AutoML being a viable alternative to Prophet and sktime for automated time series, is the effectiveness of ElasticNets for time series forecasting. The key is feature engineering. By feeding the model a large array of lagged transformations, the ElasticNet uses the L1 and L2 regularization terms to suppress features with poor predictive power and emphasize the predictive features.</p>
+<p>My evaluation focused only on rolling one-period ahead forecasts. However, the AutoML tool can handle forecast windows greater than one. This is specified by the forecast window parameter. The next step in this analysis will be to determine how AutoML compares to Prophet and sktime at forecasting multiple periods out.</p>
+<p>Finally, the time series mode of the AutoML tool currently only handles univariate analysis. In a future version of the package, I plan to add support for time series with exogenous variables (e.g., modeling unemployment on multiple FRED economic indicators).</p>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bWFjaGluZSUyMGxlYXJuaW5nJTJDdGltZSUyMHNlcmllcw==" data-listing-date-sort="1765170000000" data-listing-file-modified-sort="1765245582350" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="880">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/auto_ml_benchmarking_ts/index.html" class="no-external">Benchmarking AutoML for Time Series Forecasting</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/auto_ml_benchmarking_ts/index.html" class="no-external">
-<p>A comparison of AutoML to Prophet and sktime.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/auto_ml_benchmarking_ts/index.html" class="no-external">
-<div class="listing-date">
-December 8, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Z2VuQUklMkNhZ2VudHM=" data-listing-date-sort="1737435600000" data-listing-file-modified-sort="1764608303356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/sqlbot/index.html" class="no-external">SQLbot</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/sqlbot/index.html" class="no-external">
-<p>Building a conversational SQL agent with LangChain that translates natural language queries into database operations.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/sqlbot/index.html" class="no-external">
-<div class="listing-date">
-January 21, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="bWFjaGluZSUyMGxlYXJuaW5n" data-listing-date-sort="1734498000000" data-listing-file-modified-sort="1764608303288" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1066">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/auto_ml/index.html" class="no-external">AutoML</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/auto_ml/index.html" class="no-external">
-<p>Building a custom AutoML tool for predictive modeling with automatic model selection and interpretation.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/auto_ml/index.html" class="no-external">
-<div class="listing-date">
-December 18, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="ZGF0YSUyMHZpeg==" data-listing-date-sort="1572580800000" data-listing-file-modified-sort="1764608303354" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8280">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/film/index.html" class="no-external">Are We in Kansas Anymore?</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/film/index.html" class="no-external">
-<p>Analyzing trends in Hollywood film over four decades using data scraped from Wikipedia.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/film/index.html" class="no-external">
-<div class="listing-date">
-November 1, 2019
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="bWFjaGluZSUyMGxlYXJuaW5n" data-listing-date-sort="1563249600000" data-listing-file-modified-sort="1764608303289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6733">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/beer/beer_post.html" class="no-external">Building a Recommendation System with Beer Data</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/beer/beer_post.html" class="no-external">
-<p>Creating a beer recommender system using item-based collaborative filtering on 5.5 million ratings.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/beer/beer_post.html" class="no-external">
-<div class="listing-date">
-July 16, 2019
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

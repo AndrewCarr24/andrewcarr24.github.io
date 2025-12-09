@@ -1,0 +1,14 @@
+series,series_type,automl_winner,automl_mae,prophet_winner,prophet_mae,sktime_winner,sktime_mae,winner
+Seasonal+Trend,Synthetic,ElasticNet,1.7638142806274313,GAM CPS: 0.005 SPS: 15.0 Seasonality: additive Growth: linear,1.9094141651883707,XGB-Reduction,1.5665015624029195,sktime
+Linear Trend,Synthetic,SimpleESRegressor,2.179850828964786,GAM CPS: 0.5 SPS: 5.0 Seasonality: additive Growth: linear,2.226241802675889,EnsembleTop3,2.1450401735947104,sktime
+Quadratic,Synthetic,AutoARIMARegressor,1.5441384239072704,GAM CPS: 0.05 SPS: 15.0 Seasonality: multiplicative Growth: logistic,12.318050106479044,Trend2,1.4379585596820637,sktime
+Logistic (S-curve),Synthetic,ElasticNet,2.501109867609156,GAM CPS: 0.5 SPS: 15.0 Seasonality: multiplicative Growth: logistic,2.8675903382259267,ETS-add-none-sp1,2.3246734758243406,sktime
+Random Walk (drift),Synthetic,ElasticNet,0.7155406389353564,GAM CPS: 0.5 SPS: 5.0 Seasonality: additive Growth: logistic,1.6879872409841683,ETS-none-add-sp12,1.47956233150898,automl
+Piecewise (changepoints),Synthetic,ElasticNet,1.9215938313952052,GAM CPS: 0.05 SPS: 5.0 Seasonality: additive Growth: linear,1.9133270263288875,ETS-add-add-sp12,2.973776434395216,prophet
+Spiky Intermittent,Synthetic,SimpleESRegressor,1.6740177059893468,GAM CPS: 0.05 SPS: 5.0 Seasonality: multiplicative Growth: linear,1.640219924262226,ETS-add-add-damped-sp12,1.6552686360004518,prophet
+Multi-seasonal,Synthetic,SimpleESRegressor,1.4614552245333263,GAM CPS: 0.5 SPS: 15.0 Seasonality: multiplicative Growth: logistic,1.400259772332091,RF-Reduction,1.58247726910861,prophet
+CO2,Real (statsmodels),ElasticNet,0.2515698395607515,GAM CPS: 0.005 SPS: 15.0 Seasonality: additive Growth: logistic,0.3680206361081133,XGB-Reduction,0.2860975572002644,automl
+CPIAUCSL,Real (FRED),ElasticNet,0.437166150287652,GAM CPS: 0.05 SPS: 15.0 Seasonality: multiplicative Growth: linear,1.5323170838508322,Naive-drift,2.903951501754172,automl
+UNRATE,Real (FRED),ElasticNet,0.1159604702567497,GAM CPS: 0.005 SPS: 15.0 Seasonality: additive Growth: logistic,0.2760964178185841,EnsembleTop3,0.168240903239456,automl
+INDPRO,Real (FRED),ElasticNet,0.4610544577619133,GAM CPS: 0.05 SPS: 15.0 Seasonality: additive Growth: linear,0.7208009007353299,Naive-last,1.660224657110076,automl
+Average,,,1.2522726433190787,,2.4050271179157887,,1.6819810884851052,automl
