@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-75f156ea4d3bf2f701f8e58132300531.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-4856c3c7b585e0bb77f448dc6fcd159f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bed030ac640bda83626f1ffb71ca9806.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-4856c3c7b585e0bb77f448dc6fcd159f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -307,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/andrew-carr24"> <i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/andrew-carr-a2aba232/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -373,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>I created a dataset of approximately 5.5 million ratings of 24.5 thousand beers from 100 thousand users. These data include reviews and metadata on beers (e.g.&nbsp;brewery location, beer style) and users (gender and age, location).</p>
 <p>Due to the data’s size, I manipulate the data as a Spark dataframe with the sparklyr package. Let’s begin by importing the data and seeing what it looks like.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beer_data <span class="ot">&lt;-</span> <span class="fu">spark_read_csv</span>(sc, <span class="st">"beer_data_fin.csv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beer_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beer_data <span class="ot">&lt;-</span> <span class="fu">spark_read_csv</span>(sc, <span class="st">"beer_data_fin.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beer_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## # Source: spark&lt;?&gt; [?? x 3]
 ##   beer_full                                user_score user_id
@@ -393,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To create my recommender system, I use item-based collaborative filtering, a method that uses similarities among items to produce recommendations. For this to work, I need to infer similarities among beers from patterns in users' beer ratings. I begin by converting my data into a “user-by-beer” matrix, where each row contains ratings from a given user. Because most users have not rated most beers, this will be a very sparse matrix. This will also be a very large matrix (~100,000 users x 24,500 beers = 2.5 billion cells!). We cannot fit this data in the R workspace as a conventional matrix. Fortunately, the sparsity of the matrix means that we should have no trouble working with the data as a sparse matrix. The Matrix package has tools that will help with this.</p>
 <p>Sparse matrices are made up of three components: the row number (“i”) of a non-empty cell, the column number (“j”) of a non-empty cell, and the value (“x”) in that cell (the ratings). To create a vector of row numbers for the sparse matrix, I first find the number of ratings associated with each user. I then repeat the user id the number of times that this user has posted a rating. For example, if user 1 has 3 ratings and user 2 has 4 ratings, the i vector would be [1, 1, 1, 2, 2, 2, 2].</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find number of users in the data </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find number of users in the data </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>num_users <span class="ot">&lt;-</span> beer_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(user_id) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             sdf_nrow</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -405,11 +406,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(count) <span class="sc">%&gt;%</span> collect <span class="sc">%&gt;%</span> .[[<span class="st">"count"</span>]] </span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat user_id by the number of ratings associated with each user</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>num_users, i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>num_users, i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Creating a vector of column numbers associated with each beer rating (the “j” vector) is a bit more complicated. I’ve annotated my approach in the code below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Spark dataframe with ids for each beer </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Spark dataframe with ids for each beer </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>beer_key <span class="ot">&lt;-</span> beer_data <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(beer_full) <span class="sc">%&gt;%</span> sdf_with_sequential_id</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge unique beer ids to the beer data with left_join </span></span>
@@ -422,18 +423,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>     collect <span class="sc">%&gt;%</span> .[[<span class="st">"vec"</span>]]</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Change beer key from Spark dataframe to regular dataframe</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>beer_key <span class="ot">&lt;-</span> beer_key <span class="sc">%&gt;%</span> collect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>beer_key <span class="ot">&lt;-</span> beer_key <span class="sc">%&gt;%</span> collect</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Lastly, I extract a vector of user ratings from the dataframe. To do this I sort the data by user id, bring the data into R, and extract user scores as a vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort data by user_id, bring data into R, and extract user_score vector </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort data by user_id, bring data into R, and extract user_score vector </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> beer_data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(user_id) <span class="sc">%&gt;%</span> <span class="fu">select</span>(user_score) <span class="sc">%&gt;%</span> collect <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     .[[<span class="st">"user_score"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     .[[<span class="st">"user_score"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>I can now use the sparseMatrix function from the Matrix package to create a sparse matrix. Here’s how the sparse matrix is represented in R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>beer_sparse <span class="ot">&lt;-</span> <span class="fu">sparseMatrix</span>(<span class="at">i =</span> i, <span class="at">j =</span> j, <span class="at">x =</span> x)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beer_sparse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>beer_sparse <span class="ot">&lt;-</span> <span class="fu">sparseMatrix</span>(<span class="at">i =</span> i, <span class="at">j =</span> j, <span class="at">x =</span> x)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beer_sparse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## 6 x 24542 sparse Matrix of class "dgCMatrix"
 ##
@@ -463,8 +464,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This provides a snapshot of the first six users in the matrix. The dots represent empty cells and the numbers represent ratings. This object is only 63Mb, large for a sparse matrix, but manageable for our purposes. Our next step is to calculate similarity scores among beers. Before we can do this, we need to make some more modifications to the data.</p>
 <p>One problem with the data in its present form is that information for each beer is stored in a high dimensional vector. This poses computational and mathematical problems. A way to get around this issue is to do a partial singular value decomposition (SVD) of the sparse matrix. An SVD is a kind of matrix factorization that breaks an m by n matrix into three parts: an m by m matrix (“U”), an m by n diagonal matrix (“d”), and an n by n matrix (“V”). A partial SVD keeps only the columns and rows in U and V that correspond with the largest singular values in d.&nbsp;This amounts to replacing the high dimensional matrix with some lower dimensional matrices that retain much of the information in the original matrix. The irlba package in R lets you specify the number of singular values to use in a partial SVD. Most useful for our purposes, irlba can perform partial SVDs on sparse matrices. I make the arbitrary choice here to keep the 25 largest singular values, factoring my sparse matrix into an ~105,000x25 matrix (U), a 25x25 matrix (d), and a ~25x24,500 matrix (V). The matrix that interests me is V, which the irlba package automatically transposes into a 24,500x25 matrix. This can be thought of as representing ratings patterns for 24,500 beers (the rows) along 25 latent dimensions (the columns), albeit at a loss of some information. Let’s have a look at the first few rows of V.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>beer_sparse_svd <span class="ot">&lt;-</span> <span class="fu">irlba</span>(beer_sparse, <span class="dv">25</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beer_sparse_svd<span class="sc">$</span>v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>beer_sparse_svd <span class="ot">&lt;-</span> <span class="fu">irlba</span>(beer_sparse, <span class="dv">25</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beer_sparse_svd<span class="sc">$</span>v)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>##               [,1]         [,2]        [,3]          [,4]         [,5]
 ## [1,] -0.0256985740 0.0229678228 0.005193778  0.0051384220  0.052757404
@@ -504,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These numbers represent the ratings patterns for 6 beers mapped onto 25 dimensions. I can now calculate similarity scores. While there are many options out there for computing similarity between vectors, I choose one of the simplest and most commonly-used ones: cosine distance. The cosine distance between two vectors is their dot product divided by the product of their norms. I calculate the cosine distance with a function from the lsa package.</p>
 <p>Before we can find similarity scores among the beers in the data, we must consider one last issue. Calculating similarity scores among 24,500 beers would produce 24,500 choose 2, or roughly 300 million, similarity scores. We once again find ourselves exceeding the size limits of the R workspace. I sidestep this issue by only keeping the largest 500 similarity scores for each beer. While this cutoff resolves the size concern, we are still left with the task of computing 300 million similarity scores, most of which will be discarded. To do this, I use the foreach, parallel, and doParallel packages and parallelize this task. This took about fifteen minutes to run on my computer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up and registering a cluster for parallel processing</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up and registering a cluster for parallel processing</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -533,12 +534,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(sims.test) <span class="ot">&lt;-</span> <span class="fu">c</span>(beer_key[i,] <span class="sc">%&gt;%</span> .[[<span class="st">"beer_full"</span>]], <span class="st">"id"</span>, <span class="st">"score"</span>)</span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sims.test)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s check the resulting list for face validity. I’ll search for one of my favorite beers, Ballast Point’s Sculpin IPA, to find out which beers are most similar to the Sculpin.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beers similar to Sculpin </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>item_similarity_matrix[<span class="fu">grep</span>(<span class="st">"Sculpin"</span>, beer_key<span class="sc">$</span>beer_full)[<span class="dv">6</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beers similar to Sculpin </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>item_similarity_matrix[<span class="fu">grep</span>(<span class="st">"Sculpin"</span>, beer_key<span class="sc">$</span>beer_full)[<span class="dv">6</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## [[1]]
 ## # A tibble: 500 x 3
@@ -557,8 +558,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## # … with 490 more rows</code></pre>
 <p>This tibble shows the 500 most similar beers to Sculpin sorted in decreasing order of their similarity. The list consists mainly of American IPAs, which is what Sculpin is. I can attest to the similarity of some of the beers on this list (Bear Republic’s Racer 5, Stone’s Enjoy By) to Sculpin. It’s also worth noting that many of these beers come from Californian breweries, which is where Sculpin is brewed. This may reflect a tendency of reviewers to be more familiar with beers in their own region. This sort of regional clustering presents problems for the validity of the recommender system, especially if one’s region has little bearing on one’s beer preferences. Still, I’m encouraged by this list. In fact, these are some of my favorite beers. Just to show that I’m not cherry picking, I’ll randomly select a beer from my list of beers and check its similarity scores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>item_similarity_matrix[base<span class="sc">::</span><span class="fu">sample</span>(<span class="fu">nrow</span>(beer_key), <span class="dv">1</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>item_similarity_matrix[base<span class="sc">::</span><span class="fu">sample</span>(<span class="fu">nrow</span>(beer_key), <span class="dv">1</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## [[1]]
 ## # A tibble: 500 x 3
@@ -578,8 +579,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here we have a Saison from Pipeworks, a smaller Chicago-based brewery. Most of the top beers on this list are other Pipeworks beers. This could be because reviewers of this beer were more likely to review other beers from Pipeworks. This isn’t ideal; I want the recommender system to judge similarity by how beers taste rather than where they are located. One might conclude from these results that this recommender system will work better for beers from more established breweries that distribute on a national scale. For these beers, patterns in user ratings are more likely to be based on beer taste and less likely to be based on brewery and region.</p>
 <p>I am now going to write a function that takes a set of beer ratings returns a list of beer recommendations. Let’s return to our sparse matrix and sample a user who has reviewed a lot of beers. I happen to know that the third user in my data has rated a few thousand beers, so we’ll use this user as our example user.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a 24542-length vector of beer ratings for user 3</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>example_user <span class="ot">&lt;-</span> beer_sparse[<span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a 24542-length vector of beer ratings for user 3</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>example_user <span class="ot">&lt;-</span> beer_sparse[<span class="dv">3</span>,]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To predict beer ratings based on a user’s past ratings, I use the following formula:<br>
 </p>
@@ -588,35 +589,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Following this equation, the predicted rating of a given beer is the average of the ratings of similar beers weighted by their similarity scores. My function will recommend a set of beers based on which beers have the highest predicted ratings according to this equation. The first thing that I need to do is find the beer ids of the beers that the user has already rated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rated_beer_ids <span class="ot">&lt;-</span> <span class="fu">which</span>(example_user <span class="sc">!=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rated_beer_ids <span class="ot">&lt;-</span> <span class="fu">which</span>(example_user <span class="sc">!=</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, I extract similarity scores between each of the beers the user has rated and similar beers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sim_scores <span class="ot">&lt;-</span> <span class="fu">map</span>(item_similarity_matrix, <span class="sc">~</span>.x <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sim_scores <span class="ot">&lt;-</span> <span class="fu">map</span>(item_similarity_matrix, <span class="sc">~</span>.x <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(id <span class="sc">%in%</span> rated_beer_ids) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                    .[[<span class="st">"score"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                    .[[<span class="st">"score"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now I want to identify a set of “candidate beers”. These are beers that might be recommended to the user. I choose to limit this list to beers that are similar to at least 5 beers that the user has rated. My thinking here is that my equation would give beers with one similar beer to a rated beer a predicted rating of that beer’s rating. I am more confident in a predicted rating that is based on a weighted average of several rated beers, rather than one or a few beers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>candidate_beer_ids <span class="ot">&lt;-</span> <span class="fu">which</span>(sim_scores <span class="sc">%&gt;%</span> <span class="fu">map</span>(., <span class="sc">~</span><span class="fu">length</span>(.x) <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> unlist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>candidate_beer_ids <span class="ot">&lt;-</span> <span class="fu">which</span>(sim_scores <span class="sc">%&gt;%</span> <span class="fu">map</span>(., <span class="sc">~</span><span class="fu">length</span>(.x) <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> unlist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This vector, candidate_beer_ids, gives the ids of beers that are similar to at least 5 beers that the user has rated. It is likely that the user has already rated some of the beers on this list. We don’t want to predict beer ratings for beers that have already been rated, so I filter these.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>candidate_beer_ids <span class="ot">&lt;-</span> candidate_beer_ids[<span class="sc">!</span>(candidate_beer_ids <span class="sc">%in%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>candidate_beer_ids <span class="ot">&lt;-</span> candidate_beer_ids[<span class="sc">!</span>(candidate_beer_ids <span class="sc">%in%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                             rated_beer_ids)]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of candidate beers </span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(candidate_beer_ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(candidate_beer_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## [1] 19149</code></pre>
 <p>I am now ready to compute predicted ratings for the candidate beers. I start by calculating the denominators of these predicted ratings. For each candidate beer, this is the sum of similarity scores between that beer and beers the user has rated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>denoms <span class="ot">&lt;-</span> <span class="fu">map</span>(item_similarity_matrix[candidate_beer_ids], <span class="sc">~</span>.x <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">filter</span>(id <span class="sc">%in%</span> rated_beer_ids) <span class="sc">%&gt;%</span> .[[<span class="st">"score"</span>]] <span class="sc">%&gt;%</span> sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>denoms <span class="ot">&lt;-</span> <span class="fu">map</span>(item_similarity_matrix[candidate_beer_ids], <span class="sc">~</span>.x <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">filter</span>(id <span class="sc">%in%</span> rated_beer_ids) <span class="sc">%&gt;%</span> .[[<span class="st">"score"</span>]] <span class="sc">%&gt;%</span> sum)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The numerators of these predicted ratings are the products of similarity scores and ratings of beers the user has rated. I use the map function to create two lists - one of vectors of similarity scores for each candidate beer and one of vectors of ratings of similar beers to each candidate beer. Finally, I use purrr’s map2 function, which takes two lists as inputs, and take sums of the dot products of these lists of vectors. The resulting list contains the numerators of predicted ratings for each candidate beer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of similarity scores </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of similarity scores </span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sims_vecs <span class="ot">&lt;-</span> <span class="fu">map</span>(item_similarity_matrix[candidate_beer_ids],</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id <span class="sc">%in%</span> rated_beer_ids) <span class="sc">%&gt;%</span> .[[<span class="st">"score"</span>]])</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,19 +626,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                     <span class="sc">~</span>example_user[.x <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id <span class="sc">%in%</span> rated_beer_ids) <span class="sc">%&gt;%</span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                                     .[[<span class="st">"id"</span>]]])</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">map2</span>(sims_vecs, ratings_vecs, <span class="sc">~</span><span class="fu">sum</span>(.x<span class="sc">*</span>.y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">map2</span>(sims_vecs, ratings_vecs, <span class="sc">~</span><span class="fu">sum</span>(.x<span class="sc">*</span>.y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>On to the numerators. I get these by taking the the products of similarity scores and ratings of beers the user has rated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>predicted_ratings <span class="ot">&lt;-</span> <span class="fu">map2</span>(nums, denoms, <span class="sc">~</span>.x<span class="sc">/</span>.y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>predicted_ratings <span class="ot">&lt;-</span> <span class="fu">map2</span>(nums, denoms, <span class="sc">~</span>.x<span class="sc">/</span>.y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now that I have a list of predicted ratings for candidate beers I can sort beers by their predicted ratings and sample the first few rows to see which beers my recommender system would recommend to this user.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pred_ratings_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">beer_full =</span> beer_key <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pred_ratings_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">beer_full =</span> beer_key <span class="sc">%&gt;%</span> </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">filter</span>(id <span class="sc">%in%</span> candidate_beer_ids) <span class="sc">%&gt;%</span> .[[<span class="st">"beer_full"</span>]], </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">pred_rating =</span> predicted_ratings <span class="sc">%&gt;%</span> unlist) <span class="sc">%&gt;%</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">arrange</span>(<span class="fu">desc</span>(pred_rating))</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred_ratings_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred_ratings_tbl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## # A tibble: 6 x 2
 ##   beer_full                              pred_rating
@@ -650,9 +651,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ## 6 SingleCut Beersmiths KT66 IPL                 4.24</code></pre>
 <p>The top-six recommended beers for this user include 2 American Imperial IPAs, 2 American IPAs, a Belgian pale ale, and an IPL (India Pale Lager). Apparently the user has a preference for IPAs. The breweries that make these beers are geographically dispersed, which suggests that the location of breweries of beers the user has rated did not influence the results. Now let’s check the face validity of these recommendations. I’m going to pull a list of some of the top beers that this user has rated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">beer_full =</span> beer_key[<span class="fu">which</span>(example_user <span class="sc">!=</span> <span class="dv">0</span>),] <span class="sc">%&gt;%</span> .[[<span class="st">"beer_full"</span>]], </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">beer_full =</span> beer_key[<span class="fu">which</span>(example_user <span class="sc">!=</span> <span class="dv">0</span>),] <span class="sc">%&gt;%</span> .[[<span class="st">"beer_full"</span>]], </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">rating =</span> example_user[<span class="fu">which</span>(example_user <span class="sc">!=</span> <span class="dv">0</span>)]) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">arrange</span>(<span class="fu">desc</span>(rating)) <span class="sc">%&gt;%</span> head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">arrange</span>(<span class="fu">desc</span>(rating)) <span class="sc">%&gt;%</span> head</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## # A tibble: 6 x 2
 ##   beer_full                                              rating
@@ -666,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Many of this user’s favorite beers are American IPAs, and some of them are American Imperial IPAs. They also come from a geographically-distributed set of breweries. These are encouraging results.</p>
 <p>The following function takes a vector of beer ratings, applies the steps detailed above, and returns a list of beer recommendations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>recommend_beers <span class="ot">&lt;-</span> <span class="cf">function</span>(input_vec, <span class="at">similarity_cutoff =</span> <span class="dv">3</span>){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>recommend_beers <span class="ot">&lt;-</span> <span class="cf">function</span>(input_vec, <span class="at">similarity_cutoff =</span> <span class="dv">3</span>){</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Replace missing values with 0</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    input_vec[<span class="fu">is.na</span>(input_vec)] <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
@@ -719,12 +720,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"You haven't rated enough beers!"</span>)}</span>
 <span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s test the function on a random user from the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">recommend_beers</span>(beer_sparse[base<span class="sc">::</span><span class="fu">sample</span>(num_users, <span class="dv">1</span>),])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">recommend_beers</span>(beer_sparse[base<span class="sc">::</span><span class="fu">sample</span>(num_users, <span class="dv">1</span>),])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>## # A tibble: 6 x 2
 ##   beer_full                                                     pred_rating
@@ -804,13 +805,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

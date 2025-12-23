@@ -4,19 +4,41 @@ about:
   template: jolla
   links: 
     - icon: linkedin
-      text: LinkedIn
       href: https://www.linkedin.com/in/andrew-carr-a2aba232/
     - icon: github
       text: Github
       href: https://github.com/AndrewCarr24
 ---
 
-**Lorenz Interpolation: A Method for Estimating Income Inequality from Grouped Income Data**  
-  Carr, A. (2022).  
-  This study introduces a new statistical method to estimate income inequality using grouped data.  
-  *Sociological Methodology*. [Read article](https://doi.org/10.1177/00811750221085586)
+::: {.pub-card}
+[**$15,000 for Darien families, $700 for Hartford: Mapping the Unequal Effects of H.R.1 Tax Relief in Connecticut**]{.pub-title}
+[Carr, A., Abraham, M., & Markey, N. (2025).]{.pub-authors}
+[A report estimating the impact of H.R. 1 tax relief on Connecticut towns, combining CBO estimates with U.S. Census data to map unequal effects across household income distributions.]{.pub-description}
 
+::: {.pub-metadata}
+[Report]{.pub-badge}
+<a href="https://ctdatahaven.org/report/15000-for-darien-families-700-for-hartford-mapping-the-unequal-effects-of-h-r-1-tax-relief-in-connecticut/" class="pub-btn"><i class="bi bi-file-earmark-text"></i> Read report</a>
+:::
+:::
 
-**Greater New Haven Community Wellbeing Index 2023**  
-  Abraham, M., Seaberry, C., Davila, K., & Carr, A. (2023).<br>
-  A comprehensive report on the wellbeing of residents in Greater New Haven, covering health, economic opportunity, and community resources. [Read report](https://www.ctdatahaven.org)
+::: {.pub-card}
+[**Greater New Haven Community Wellbeing Index 2023**]{.pub-title}
+[Abraham, M., Seaberry, C., Davila, K., & Carr, A. (2023).]{.pub-authors}
+[A comprehensive report on the wellbeing of residents in Greater New Haven, covering health, economic opportunity, and community resources.]{.pub-description}
+
+::: {.pub-metadata}
+[Report]{.pub-badge}
+<a href="https://ctdatahaven.org/report/greater-new-haven-community-wellbeing-index/" class="pub-btn"><i class="bi bi-file-earmark-text"></i> Read report</a>
+:::
+:::
+
+::: {.pub-card}
+[**Lorenz Interpolation: A Method for Estimating Income Inequality from Grouped Income Data**]{.pub-title}
+[Carr, A. (2022).]{.pub-authors}
+[This study introduces a new statistical method to estimate income inequality using grouped data.]{.pub-description}
+
+::: {.pub-metadata}
+[Journal Article]{.pub-badge}
+<a href="https://doi.org/10.1177/00811750221085586" class="pub-btn"><i class="bi bi-journal-check"></i> Read article</a>
+:::
+:::

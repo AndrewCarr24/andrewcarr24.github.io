@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-75f156ea4d3bf2f701f8e58132300531.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d1e98adce83b86045b20a876c50a05de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4856c3c7b585e0bb77f448dc6fcd159f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bed030ac640bda83626f1ffb71ca9806.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-4856c3c7b585e0bb77f448dc6fcd159f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,7 +118,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -329,7 +330,7 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/andrew-carr24"> <i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/andrew-carr-a2aba232/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -376,7 +377,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bWFjaGluZSUyMGxlYXJuaW5nJTJDdGltZSUyMHNlcmllcw==" data-listing-date-sort="1765170000000" data-listing-file-modified-sort="1765245582350" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="880">
+<div class="quarto-post image-right" data-index="0" data-categories="bWFjaGluZSUyMGxlYXJuaW5nJTJDdGltZSUyMHNlcmllcw==" data-listing-date-sort="1765170000000" data-listing-file-modified-sort="1766498801437" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="880">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/auto_ml_benchmarking_ts/index.html" class="no-external">Benchmarking AutoML for Time Series Forecasting</a>
@@ -393,7 +394,7 @@ December 8, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Z2VuQUklMkNhZ2VudHM=" data-listing-date-sort="1737435600000" data-listing-file-modified-sort="1764608303356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
+<div class="quarto-post image-right" data-index="1" data-categories="Z2VuQUklMkNhZ2VudHM=" data-listing-date-sort="1737435600000" data-listing-file-modified-sort="1766498801486" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/sqlbot/index.html" class="no-external">SQLbot</a>
@@ -410,7 +411,7 @@ January 21, 2025
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="bWFjaGluZSUyMGxlYXJuaW5n" data-listing-date-sort="1734498000000" data-listing-file-modified-sort="1764608303288" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1066">
+<div class="quarto-post image-right" data-index="2" data-categories="bWFjaGluZSUyMGxlYXJuaW5n" data-listing-date-sort="1734498000000" data-listing-file-modified-sort="1766498801434" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1066">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/auto_ml/index.html" class="no-external">AutoML</a>
@@ -427,7 +428,7 @@ December 18, 2024
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="ZGF0YSUyMHZpeg==" data-listing-date-sort="1572580800000" data-listing-file-modified-sort="1764608303354" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8280">
+<div class="quarto-post image-right" data-index="3" data-categories="ZGF0YSUyMHZpeg==" data-listing-date-sort="1572580800000" data-listing-file-modified-sort="1766498801478" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8280">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/film/index.html" class="no-external">Are We in Kansas Anymore?</a>
@@ -444,7 +445,7 @@ November 1, 2019
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="bWFjaGluZSUyMGxlYXJuaW5n" data-listing-date-sort="1563249600000" data-listing-file-modified-sort="1764608303289" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6733">
+<div class="quarto-post image-right" data-index="4" data-categories="bWFjaGluZSUyMGxlYXJuaW5n" data-listing-date-sort="1563249600000" data-listing-file-modified-sort="1766498801437" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6733">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/beer/beer_post.html" class="no-external">Building a Recommendation System with Beer Data</a>
@@ -528,13 +529,14 @@ July 16, 2019
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
