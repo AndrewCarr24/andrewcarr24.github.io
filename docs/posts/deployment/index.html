@@ -384,11 +384,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="automl-deployment-architecture" class="level3">
 <h3 class="anchored" data-anchor-id="automl-deployment-architecture">AutoML Deployment Architecture</h3>
 <p>Here is a diagram of the deployment architecture:</p>
-<p><img src="img/automl_architecture.png" width="80%"></p>
+<p><img src="img/automl_architecture.png" width="100%"></p>
 <p>The bottom left blue box shows how the infrastructure is set up. Upon pushing to the deployment repo, a Github Action is executed that applies the Terraform configuration (provisioning and configuring permissions for AWS resources) and registers a Docker image for the AutoML environment in Amazon ECR.</p>
 <p>The top right blue box shows how the model is accessed through API endpoints (“Client Access”) and scheduled triggers (“Ingestion Pipeline”). API calls and scheduled jobs both trigger a Lambda function that runs SageMaker jobs. These jobs execute Python scripts that train the model, get predictions from a trained model, and generate model diagnostic plots. Model output is saved in S3 to a path that is determined by the parameters of the API call. You can follow through the Setup &amp; Deployment and Usage sections of the README in the repo to deploy this on your AWS account.</p>
 <p>The <code>run_pipeline</code> script in the <code>ref</code> folder demonstrates how to use the API. The script uploads the titanic dataset to S3 and runs AutoML using the train, predict, and plot API endpoints. The image below shows the output in S3 that results from running <code>python ref/run_pipeline.py andrew titanic_demo train test</code> in the command line, where <code>andrew</code> is the user, <code>titanic_demo</code> is the project, and <code>train</code> and <code>test</code> are the Titanic training and prediction datasets.</p>
-<p><img src="img/automl_output_structure.png" width="90%"></p>
+<p><img src="img/automl_output_structure.png" width="100%"></p>
 <p>The training call saves a trained model to the <code>models</code> folder. The prediction call gets predictions on <code>test.csv</code> from the trained model and saves them to the <code>predictions</code> folder. The plotting call generates feature importance and feature effects plots using the trained model in <code>models</code> and saves them to the <code>plots</code> folder. One advantage of this deployment method is that the command-line arguments of <code>run_pipeline</code> ensure that multiple people can utilize AutoML for different projects. The model outputs are saved in separate locations in the <code>automl-data</code> S3 bucket.</p>
 </section>
 <section id="scheduled-execution-of-automl" class="level3">
@@ -450,13 +450,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="deploying-automl-as-a-streamlit-app">Deploying AutoML as a Streamlit App</h3>
 <p>While setting up an API makes a model available to technical users, building a Streamlit app makes it accessible to a wider audience. I created a Streamlit app for AutoML as a proof of concept. To deploy this at an organization, one would need to host the app using a tool like AWS App Runner. Unlike Lambda, which is triggered by an event and runs for a short period of time, an App Runner instance runs 24/7 to ensure the app is always available. My Streamlit app is available in the deployment repo (app.py). I ran the app locally: <code>streamlit run app.py</code>.</p>
 <p>The app opens on the Train Model tab. The user uploads training data and provides the outcome variable name to run the AutoML tool.</p>
-<p><img src="img/automl_app_train.png" width="90%"></p>
+<p><img src="img/automl_app_train.png" width="100%"></p>
 <p>The User ID and Project Name fields in the left menu determine the S3 path to which the trained model is saved. The app notifies the user that the training job has been submitted and shares the job ID.</p>
-<p><img src="img/train_job_id.png" width="50%"></p>
+<p><img src="img/train_job_id.png" width="65%"></p>
 <p>The user can view this job in Sagemaker.</p>
-<p><img src="img/sagemaker_job.png" width="60%"></p>
+<p><img src="img/sagemaker_job.png" width="80%"></p>
 <p>Once the job is complete, the user can generate plots or get predictions.</p>
-<p><img src="img/plots_app.png" width="60%"></p>
+<p><img src="img/plots_app.png" width="80%"></p>
 <p><img src="img/preds_app.png" width="60%"></p>
 </section>
 <section id="recap" class="level3">
