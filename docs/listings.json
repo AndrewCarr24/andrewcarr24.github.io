@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/deployment/index.html",
       "/posts/auto_ml_benchmarking_ts/index.html",
       "/posts/sqlbot/index.html",
       "/posts/auto_ml/index.html",
