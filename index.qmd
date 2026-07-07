@@ -1,5 +1,5 @@
 ---
-title: "👋 Welcome to my blog"
+title: "👋 Hi, I'm Andrew"
 listing:
   contents: posts
   sort: "date desc"
@@ -14,8 +14,26 @@ page-layout: article
 title-block-banner: false
 ---
 
-I'm a data scientist in the Raleigh-Durham area. I use this blog to think through some of the projects I'm working on.
+I'm a data scientist in the Raleigh-Durham area, with a PhD in sociology and an MS in statistics from Duke. I use this site to showcase side projects I've built — the best place to start is the featured series below. If you want to get in touch: carr.andrewjohn \[at\] gmail \[dot\] com.
 
+## Featured project
 
+```{=html}
+<div class="featured-card">
+    <span class="featured-badge">Three-part series</span>
+    <p class="featured-title">AutoML, end to end</p>
+    <p class="featured-desc">A custom AutoML package for predictive modeling — built from scratch,
+    benchmarked against Prophet and sktime, and deployed to AWS with Terraform, GitHub Actions,
+    and SageMaker.</p>
+    <ol class="featured-parts">
+      <li><a href="posts/auto_ml/index.html">Building the tool</a></li>
+      <li><a href="posts/auto_ml_benchmarking_ts/index.html">Benchmarking it against Prophet and sktime</a></li>
+      <li><a href="posts/deployment/index.html">Deploying it on AWS</a></li>
+    </ol>
+    <p class="featured-code"><i class="bi bi-github"></i>
+      <a href="https://github.com/AndrewCarr24/automl_tool">automl_tool</a> ·
+      <a href="https://github.com/AndrewCarr24/automl-deploy">automl-deploy</a></p>
+</div>
+```
 
-
+## All posts

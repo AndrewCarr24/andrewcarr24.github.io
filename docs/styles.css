@@ -305,3 +305,112 @@ body.quarto-dark .pub-authors {
     color: #b0b0b0;
     /* Lighter than standard secondary for better contrast */
 }
+
+/* ===== Homepage Featured Projects ===== */
+.featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.featured-card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--bs-body-bg);
+    border: 1px solid rgba(128, 128, 128, 0.15);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featured-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-color: var(--bs-primary);
+}
+
+.featured-badge {
+    align-self: flex-start;
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.featured-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+.featured-desc {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.featured-parts {
+    margin-bottom: 0.75rem;
+    padding-left: 1.4rem;
+}
+
+.featured-parts li {
+    margin-bottom: 0.25rem;
+}
+
+.featured-read {
+    margin-bottom: 0.75rem;
+}
+
+.featured-parts a,
+.featured-read a {
+    color: #2780e3;
+    font-weight: 500;
+}
+
+.featured-parts a:hover,
+.featured-read a:hover {
+    text-decoration: underline;
+    color: #2780e3;
+}
+
+body.quarto-dark .featured-parts a,
+body.quarto-dark .featured-read a,
+body.quarto-dark .featured-parts a:hover,
+body.quarto-dark .featured-read a:hover {
+    color: #6db3f2;
+}
+
+.featured-code {
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--bs-secondary);
+}
+
+/* Dark mode adjustments */
+body.quarto-dark .featured-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.quarto-dark .featured-badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
