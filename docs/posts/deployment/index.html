@@ -68,6 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -113,6 +114,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Deploying AutoML – Andrew Carr">
+<meta property="og:description" content="Deploying a custom AutoML tool in AWS.">
+<meta property="og:image" content="https://andrewcarr24.github.io/posts/deployment/img/automl_architecture.png">
+<meta property="og:site_name" content="Andrew Carr">
+<meta property="og:image:height" content="1451">
+<meta property="og:image:width" content="2232">
+<meta name="twitter:title" content="Deploying AutoML – Andrew Carr">
+<meta name="twitter:description" content="Deploying a custom AutoML tool in AWS.">
+<meta name="twitter:image" content="https://andrewcarr24.github.io/posts/deployment/img/automl_architecture.png">
+<meta name="twitter:image-height" content="1451">
+<meta name="twitter:image-width" content="2232">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -553,7 +566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/andrewcarr24\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
